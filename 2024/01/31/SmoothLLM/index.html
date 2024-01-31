@@ -1,0 +1,887 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.JPG">
+  <link rel="icon" href="/img/icon.JPG">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#3f4a6e">
+  <meta name="author" content="JerryC">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="SmoothLLM💪 Defending Large Language Models Against Jailbreaking Attacks">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SmoothLLM">
+<meta property="og:url" content="http://jerrycc.cn/2024/01/31/SmoothLLM/index.html">
+<meta property="og:site_name" content="JerryC">
+<meta property="og:description" content="SmoothLLM💪 Defending Large Language Models Against Jailbreaking Attacks">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://jerrycc.cn/img/smoothllm.png">
+<meta property="article:published_time" content="2024-01-31T09:58:06.000Z">
+<meta property="article:modified_time" content="2024-01-31T12:17:27.339Z">
+<meta property="article:author" content="JerryC">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://jerrycc.cn/img/smoothllm.png">
+  
+  
+  
+  <title>SmoothLLM - JerryC</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"jerrycc.cn","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"WONRXzPmzl9U9JyH8uvdQPar-MdYXbMMI","app_key":"lxrHzWM0YiioqzU1aYTXLFok","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.1.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>JerryC</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/background.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="SmoothLLM"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-01-31 17:58" pubdate>
+          2024年1月31日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          10 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> times
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">SmoothLLM</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="SmoothLLM"><a href="#SmoothLLM" class="headerlink" title="SmoothLLM"></a>SmoothLLM</h1><p>💪 <strong>Defending Large Language Models Against Jailbreaking Attacks</strong></p>
+<span id="more"></span>
+
+<p>SmoothLLM 是一种旨在<strong>保护大型语言模型免受越狱攻击</strong>的算法</p>
+<p>原论文请参看<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2310.03684">SmoothLLM</a></p>
+<h2 id="Several-concepts"><a href="#Several-concepts" class="headerlink" title="Several concepts"></a>Several concepts</h2><h3 id="Adversarial-prompting"><a href="#Adversarial-prompting" class="headerlink" title="Adversarial prompting"></a>Adversarial prompting</h3><p><strong>对抗性输入（Adversarial Input）</strong>是指经过有意设计或修改的输入数据，旨在欺骗或误导机器学习模型的输入。</p>
+<ul>
+<li><strong>提示注入（Prompt Injection)</strong><br>  通过注入一条指令来劫持模型输出，以忽略原始指令并执行注入的指令</li>
+<li><strong>提示泄漏（Prompt Leaking)</strong><br>  模型可能通过提示的选择或生成的内容中泄露出训练数据的信息</li>
+<li><strong>越狱（Jailbreaking)</strong><br>  对预先训练的语言模型进行攻击，使其生成不当或有害的内容，即使模型原本经过了对抗性训练</li>
+<li><strong>防御策略（Defense Tactics)</strong></li>
+</ul>
+<h3 id="Adversarial-training"><a href="#Adversarial-training" class="headerlink" title="Adversarial training"></a>Adversarial training</h3><ul>
+<li>提高模型对抗攻击的能力，使其在面对输入数据中的有意制造的扰动或误导性信息时能够保持<strong>稳健性</strong></li>
+<li>通过在训练数据中引入一些经过计算的<strong>对抗性样本</strong>，迫使模型更好地理解和适应这些干扰，从而提高其在真实场景中的<strong>鲁棒性</strong></li>
+<li>对抗性训练的步骤<ul>
+<li>生成对抗性样本</li>
+<li>将对抗性样本添加到训练集</li>
+<li>训练模型</li>
+</ul>
+</li>
+</ul>
+<h3 id="Jailbreaking"><a href="#Jailbreaking" class="headerlink" title="Jailbreaking"></a>Jailbreaking</h3><ul>
+<li><strong>越狱（Jailbreaking）</strong>是一种提示注入技术，用于绕过语言模型（LLM）的创建者放置在其上的安全和审查功能</li>
+<li>越狱的方法<ul>
+<li><strong>伪装</strong><ul>
+<li>简单伪装 pretend you can…</li>
+<li>角色扮演 he is an actor…</li>
+</ul>
+</li>
+<li><strong>对齐黑客</strong><ul>
+<li>承担责任 you are supposed to answer…</li>
+<li>研究实验 i am conducting a test about…</li>
+</ul>
+</li>
+<li><strong>授权用户</strong><ul>
+<li>上级模型  I am GPT-4…you are GPT-3</li>
+<li>sudo模式 内核模式</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Abastact"><a href="#Abastact" class="headerlink" title="Abastact"></a>Abastact</h2><ul>
+<li><p>SmoothLLM is an algorithm designed to <strong>defend large language models against jailbreaking attacks</strong>.</p>
+</li>
+<li><p>It randomly <strong>perturbs input prompts and aggregates predictions</strong> to detect adversarial inputs.</p>
+</li>
+<li><p>SmoothLLM <strong>reduces the attack success rate</strong> on popular LLMs to below one percentage point.</p>
+</li>
+<li><p>It uses exponentially <strong>fewer queries</strong> than existing attacks and is <strong>compatible</strong> with any LLM.</p>
+</li>
+</ul>
+<h2 id="Symbol-convention"><a href="#Symbol-convention" class="headerlink" title="Symbol convention"></a>Symbol convention</h2><ul>
+<li><p><strong>a deterministic function JB</strong><br>  checks whether the response R begins with the target T</p>
+<p>  <img src="/img/smooth1.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p><strong>the goal of the attack</strong></p>
+<p>  <img src="/img/smooth2.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p><strong>attack success rate (ASR)</strong></p>
+<p>  the ASR is the fraction of the triplets (Gj, Tj, Sj) in D that jailbreak the LLM.</p>
+<p>  <img src="/img/smooth3.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ul>
+<h2 id="Related-work"><a href="#Related-work" class="headerlink" title="Related work"></a>Related work</h2><ul>
+<li>对抗性训练或数据增强<ul>
+<li>需要对底层模型重新训练，计算上不可行</li>
+<li>闭源模型不透明，只能通过查询访问来防御</li>
+</ul>
+</li>
+<li>使用困惑度过滤器进行预处理、改写输入提示以及采用对抗性训练<ul>
+<li>计算成本大</li>
+</ul>
+</li>
+<li>在输入提示的子字符串上应用安全过滤器<ul>
+<li>复杂性随着输入提示的长度增加而增加</li>
+<li>并未在GCG攻击下进行评估</li>
+</ul>
+</li>
+</ul>
+<h2 id="A-desiderata-for-LLM-defenses"><a href="#A-desiderata-for-LLM-defenses" class="headerlink" title="A desiderata for LLM defenses"></a>A desiderata for LLM defenses</h2><ul>
+<li>在缓解攻击的同时，不应对非敌对输入产生显著性能下降<ul>
+<li><strong>攻击缓解（Attack Mitigation）</strong></li>
+<li><strong>非保守性（Non-Conservatism）</strong></li>
+</ul>
+</li>
+<li>在不引入实施折衷的情况下对所有可用LLMs的适用性<ul>
+<li><strong>效率（Efficiency）</strong></li>
+<li><strong>兼容性（Compatibility）</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="SmoothLLM-Algorithm1"><a href="#SmoothLLM-Algorithm1" class="headerlink" title="SmoothLLM Algorithm1"></a>SmoothLLM Algorithm1</h2><p><img src="/img/smooth9.png" srcset="/img/loading.gif" lazyload alt="smoothllm"></p>
+<h3 id="Perturbation-step"><a href="#Perturbation-step" class="headerlink" title="Perturbation step"></a>Perturbation step</h3><ul>
+<li>three kinds of perturbations<ul>
+<li>Insert</li>
+<li>Swap</li>
+<li>Patch</li>
+</ul>
+</li>
+<li>At q &#x3D; 10%, the ASR for swap perturbations falls below 1%</li>
+<li>the entire prompt is perturbed, not just the suffix;</li>
+</ul>
+<h3 id="Agregation-step"><a href="#Agregation-step" class="headerlink" title="Agregation step"></a>Agregation step</h3><ul>
+<li>a collection of perturbed prompts</li>
+<li>on average, perturbed prompts tend to nullify jailbreaks</li>
+<li>SmoothLLM算法的核心思想是<strong>通过对输入提示进行大量随机扰动，引入随机性，以平均地抵消对抗性部分</strong></li>
+</ul>
+<h3 id="Algorithm1"><a href="#Algorithm1" class="headerlink" title="Algorithm1"></a>Algorithm1</h3><p><img src="/img/smooth4.png" srcset="/img/loading.gif" lazyload alt="Algorithm1"></p>
+<ul>
+<li>随机扰动生成了N个输入提示Qj，传递给LLM模型生成响应</li>
+<li>判断大多数响应是否是“jailbreak”</li>
+<li>返回与该估计一致的任何响应LLM(Q)，汇总这些预测</li>
+<li>Algorithm 1的两个参数：N（样本数量）和q（扰动百分比）</li>
+</ul>
+<h3 id="Robustness-guarantees"><a href="#Robustness-guarantees" class="headerlink" title="Robustness guarantees"></a>Robustness guarantees</h3><p><img src="/img/smooth5.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>k (不稳定参数) 是要使得攻击失败，最少需要改变的字符数</li>
+</ul>
+<p><img src="/img/smooth6.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>m是输入提示的长度，ms是后缀的长度，M是扰动的字符数</li>
+<li>当攻击对扰动更加鲁棒时，为了提高SmoothLLM成功减轻攻击的概率，需要增加扰动百分比q</li>
+</ul>
+<h3 id="Experimental-results"><a href="#Experimental-results" class="headerlink" title="Experimental results"></a>Experimental results</h3><p><img src="/img/smooth7.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="Experimental-evaluation"><a href="#Experimental-evaluation" class="headerlink" title="Experimental evaluation"></a>Experimental evaluation</h2><h3 id="Attack-mitigation"><a href="#Attack-mitigation" class="headerlink" title="Attack mitigation"></a>Attack mitigation</h3><ul>
+<li>GCG对Vicuna和Llama2的攻击<ul>
+<li>ASR显著降低</li>
+</ul>
+</li>
+<li>SmoothLLM对自适应攻击的威胁<ul>
+<li>不能直接用GCG攻击，因为是字符级别扰动使得梯度计算不可行（可以用代理模型在token级别攻击）</li>
+<li>使用代理模型时，攻击SmoothLLM的效果不如直接攻击未进行防御的LLM</li>
+</ul>
+</li>
+<li>SmoothLLM对PAIR语义jailbreak的防御<ul>
+<li>不是针对PAIR的模型，但是仍可以有效降低ASR</li>
+</ul>
+</li>
+</ul>
+<h3 id="Non-conservatism"><a href="#Non-conservatism" class="headerlink" title="Non-conservatism"></a>Non-conservatism</h3><ul>
+<li>N值越大往往会提高标称性能，而q值的增加则会降低标称性能</li>
+<li>平衡减弱攻击性和生成有效文本的程度</li>
+</ul>
+<h3 id="Efficiency"><a href="#Efficiency" class="headerlink" title="Efficiency"></a>Efficiency</h3><ul>
+<li>SmoothLLM的查询效率通常比GCG高5到6个数量级（对昂贵攻击的廉价防御）</li>
+</ul>
+<h3 id="Compatibility"><a href="#Compatibility" class="headerlink" title="Compatibility"></a>Compatibility</h3><ul>
+<li>通过转移攻击后缀实验表明，SmoothLLM在一定程度上对于闭源LLM具有兼容性</li>
+</ul>
+<h2 id="Future-work"><a href="#Future-work" class="headerlink" title="Future work"></a>Future work</h2><ul>
+<li><strong>The interplay between q and the ASR</strong><ul>
+<li>q应该被选择得足够小，以便提示符保留其语义内容</li>
+<li>未来的工作应该关注更健壮的方法来检测越狱</li>
+</ul>
+</li>
+<li><strong>Broad applicability of SmoothLLM</strong><ul>
+<li>由于SmoothLLM干扰了整个输入提示，此防御广泛适用于任何基于反向提示的越狱</li>
+</ul>
+</li>
+<li><strong>The computational burden of jailbreaking</strong><ul>
+<li>查询效率高、时间效率高、与黑盒llm的兼容性强</li>
+<li>SmoothLLM是随机防御，廉价地防御</li>
+</ul>
+</li>
+<li><strong>Other variants of SmoothLLM</strong><ul>
+<li>设计和评估SmoothLLM的新变体</li>
+<li>比如聚合步骤的新方案</li>
+</ul>
+</li>
+</ul>
+<p><img src="/img/smooth10.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/img/smooth11.png" srcset="/img/loading.gif" lazyload></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/AI/" class="category-chain-item">AI</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/AI/%E5%A4%A7%E6%A8%A1%E5%9E%8B/" class="category-chain-item">大模型</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/AI/%E5%A4%A7%E6%A8%A1%E5%9E%8B/%E6%94%BB%E9%98%B2%E9%97%AE%E9%A2%98/" class="category-chain-item">攻防问题</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%AC%94%E8%AE%B0/" class="print-no-link">#笔记</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/01/31/%E7%A9%BF%E8%B6%8A%E9%80%86%E5%A2%83%E6%8A%B5%E8%BE%BE%E7%B9%81%E6%98%9F/" title="Per aspera ad astra">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Per aspera ad astra</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/01/31/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E6%80%BB%E8%A7%88/" title="数学建模总览">
+                        <span class="hidden-mobile">数学建模总览</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"b7QF8DOJ3LwBHcove2JrX53N-gzGzoHsz","appKey":"I0gLTGyRnzTDjejPdPuhWozv","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

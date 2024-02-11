@@ -1658,7 +1658,7 @@ a.fancybox {
   display: inline-block;
 }
 a.fancybox img {
-  width: 70%;
+  width: 90%;
   height: auto;
 }
 a.fancybox:hover {

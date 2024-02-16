@@ -16,24 +16,24 @@
   <meta name="author" content="Rey">
   <meta name="keywords" content="">
   
-    <meta name="description" content="👍GitHub+PicGo图床搭建不出错指南&amp;常见问题">
+    <meta name="description" content="💡Vue响应式原理详解|疑惑小记录">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GitHub+PicGo图床设置">
-<meta property="og:url" content="http://jerrycc.cn/2024/02/11/github-pigco%E5%9B%BE%E5%BA%8A%E8%AE%BE%E7%BD%AE/index.html">
+<meta property="og:title" content="Vue响应式原理">
+<meta property="og:url" content="http://jerrycc.cn/2024/02/15/Vue%E5%93%8D%E5%BA%94%E5%BC%8F%E8%AE%BE%E8%AE%A1/index.html">
 <meta property="og:site_name" content="Rey&#39;s blog">
-<meta property="og:description" content="👍GitHub+PicGo图床搭建不出错指南&amp;常见问题">
+<meta property="og:description" content="💡Vue响应式原理详解|疑惑小记录">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://jerrycc.cn/img/picgo.jpg">
-<meta property="article:published_time" content="2024-02-11T10:35:14.000Z">
-<meta property="article:modified_time" content="2024-02-11T13:58:15.365Z">
+<meta property="og:image" content="http://jerrycc.cn/img/%E5%93%8D%E5%BA%94%E5%BC%8F.png">
+<meta property="article:published_time" content="2024-02-15T11:40:50.000Z">
+<meta property="article:modified_time" content="2024-02-15T13:17:53.511Z">
 <meta property="article:author" content="Rey">
 <meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://jerrycc.cn/img/picgo.jpg">
+<meta name="twitter:image" content="http://jerrycc.cn/img/%E5%93%8D%E5%BA%94%E5%BC%8F.png">
   
   
   
-  <title>GitHub+PicGo图床设置 - Rey&#39;s blog</title>
+  <title>Vue响应式原理 - Rey&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -228,7 +228,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="GitHub+PicGo图床设置"></span>
+            <span id="subtitle" data-typed-text="Vue响应式原理"></span>
           
         </div>
 
@@ -239,8 +239,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-02-11 18:35" pubdate>
-          2024年2月11日 晚上
+        <time datetime="2024-02-15 19:40" pubdate>
+          2024年2月15日 晚上
         </time>
       </span>
     
@@ -251,7 +251,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          602 字
+          1.2k 字
         
       </span>
     
@@ -262,7 +262,7 @@
         
         
         
-          6 分钟
+          11 分钟
         
       </span>
     
@@ -307,69 +307,81 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">GitHub+PicGo图床设置</h1>
+            <h1 id="seo-header">Vue响应式原理</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="👍GitHub-PicGo图床搭建不出错指南-常见问题"><a href="#👍GitHub-PicGo图床搭建不出错指南-常见问题" class="headerlink" title="👍GitHub+PicGo图床搭建不出错指南&amp;常见问题"></a>👍GitHub+PicGo图床搭建不出错指南&amp;常见问题</h2><span id="more"></span>
+                <h1 id="💡Vue响应式原理详解-疑惑小记录"><a href="#💡Vue响应式原理详解-疑惑小记录" class="headerlink" title="💡Vue响应式原理详解|疑惑小记录"></a>💡Vue响应式原理详解|疑惑小记录</h1><span id="more"></span>
 
-<p>前段时间写博客写图片路径太痛苦了，特别是截屏的图片</p>
-<p>（众所周知）PicGo是一款非常好用的图床工具，尤其搭配typora格外丝滑，很适合写博客</p>
-<p>本人最初是根据下面这篇文章搭建的图床</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/yefcion/article/details/88412025">PicGo+GitHub搭建个人图床工具</a></p>
-<p>配置好了之后一直上传不成功，困扰停滞了半个月，今天终于解决</p>
-<p>按照以下步骤来，应该是不出错指南吼吼</p>
-<hr>
-<h3 id="前置工作"><a href="#前置工作" class="headerlink" title="前置工作"></a>前置工作</h3><ul>
-<li><p>在github创建一个<strong>public</strong>的仓库，用于存放图片</p>
-</li>
-<li><p>点击github头像 – settings – developer settings – tokens(classic)</p>
-<p>  生成一个token,<strong>复制到一个地方</strong></p>
-<p>  <img src="https://raw.githubusercontent.com/JerryC66/picgo-repo/main/img/image-20240211201119607.png" srcset="/img/loading.gif" lazyload></p>
-</li>
-</ul>
-<h3 id="安装PicGo"><a href="#安装PicGo" class="headerlink" title="安装PicGo"></a>安装PicGo</h3><p>网上有很多资源，可以去官网下载，也可以去别人博客里面找网盘安装包，这里不过多赘述。我用的2.3.0</p>
-<blockquote>
-<p>这里小小提醒一点：<strong>最好不要安装beta测试版</strong></p>
-</blockquote>
-<p>很简单的安装过程</p>
-<h3 id="图床配置"><a href="#图床配置" class="headerlink" title="图床配置"></a>图床配置</h3><blockquote>
-<p>这里推荐用githubPlus插件</p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/JerryC66/picgo-repo/main/img/image-20240211200501729.png" srcset="/img/loading.gif" lazyload></p>
+
+
+<h2 id="💡Proxy对象"><a href="#💡Proxy对象" class="headerlink" title="💡Proxy对象"></a>💡Proxy对象</h2><p><strong>Proxy 对象</strong>是 ECMAScript 6 引入的一种用于<strong>创建代理对象</strong>的特殊对象。它允许你在操作一个对象之前定义自定义的行为，这些行为会在对象的属性被读取、写入或删除时被触发。Proxy 对象提供了一种强大的机制，可以拦截并定义各种操作，例如属性查找、赋值、枚举等，从而实现元编程的功能。</p>
+<p>Proxy 对象的基本语法如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> proxy = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Proxy</span>(target, handler);<br></code></pre></td></tr></table></figure>
+
 <ul>
-<li><p>repo填仓库地址</p>
-<p>  注意按上面的格式来 <strong>斜杠只有中间一个</strong></p>
+<li><code>target</code>：要包装的目标对象。</li>
+<li><code>handler</code>：一个包含了代理对象的拦截器（handler）方法的对象。</li>
+</ul>
+<p>代理对象的拦截器方法包括了一系列<strong>钩子函数</strong>，比如 <code>get</code>、<code>set</code>、<code>has</code>、<code>deleteProperty</code> 等，通过这些钩子函数，你可以定义在对目标对象进行操作时的行为。例如，你可以定义一个 <code>get</code> 钩子函数来拦截属性的读取操作，或者定义一个 <code>set</code> 钩子函数来拦截属性的赋值操作。</p>
+<p>&nbsp;</p>
+<p>以下是一个简单的示例，展示了如何使用 Proxy 对象来拦截对象的读取和赋值操作：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> target = &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;John&#x27;</span>,<br>  <span class="hljs-attr">age</span>: <span class="hljs-number">30</span><br>&#125;;<br><br><span class="hljs-keyword">const</span> handler = &#123;<br>  <span class="hljs-title function_">get</span>(<span class="hljs-params">target, prop</span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`Getting property &quot;<span class="hljs-subst">$&#123;prop&#125;</span>&quot;`</span>);<br>    <span class="hljs-keyword">return</span> target[prop];<br>  &#125;,<br>  <span class="hljs-title function_">set</span>(<span class="hljs-params">target, prop, value</span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`Setting property &quot;<span class="hljs-subst">$&#123;prop&#125;</span>&quot; to &quot;<span class="hljs-subst">$&#123;value&#125;</span>&quot;`</span>);<br>    target[prop] = value;<br>  &#125;<br>&#125;;<br><br><span class="hljs-keyword">const</span> proxy = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Proxy</span>(target, handler);<br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(proxy.<span class="hljs-property">name</span>); <span class="hljs-comment">// 输出: Getting property &quot;name&quot;; John</span><br>proxy.<span class="hljs-property">age</span> = <span class="hljs-number">40</span>; <span class="hljs-comment">// 输出: Setting property &quot;age&quot; to &quot;40&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>在这个例子中，我们创建了一个代理对象 <code>proxy</code>，它拦截了 <code>target</code> 对象的读取和赋值操作。当访问 <code>proxy</code> 对象的属性时，<code>get</code> 钩子函数会被触发，并输出一条日志；当对 <code>proxy</code> 对象的属性进行赋值时，<code>set</code> 钩子函数会被触发，并输出一条日志。</p>
+<hr>
+<h2 id="💡reactive-和-ref"><a href="#💡reactive-和-ref" class="headerlink" title="💡reactive() 和 ref()"></a>💡<code>reactive()</code> 和 <code>ref()</code></h2><p><code>reactive()</code> 和 <code>ref()</code> 是 Vue 3 中用于创建响应式数据的两种不同方式。它们的主要区别在于它们处理数据的方式和用法：</p>
+<ol>
+<li><p><strong><code>reactive()</code>：</strong></p>
+<ul>
+<li><code>reactive()</code> 函数用于创建一个具有响应式特性的对象。</li>
+<li>当你使用 <code>reactive()</code> 包裹一个对象时，该对象的所有属性都会变成响应式的，即当对象的属性发生变化时，相关的视图会被重新渲染。</li>
+<li><code>reactive()</code> 返回的是一个 Proxy 对象，它会拦截对对象的所有操作，从而使得对对象的任何改变都能被 Vue 追踪到，并触发相应的更新。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> &#123; reactive &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>;<br><br><span class="hljs-keyword">const</span> state = <span class="hljs-title function_">reactive</span>(&#123;<br>  <span class="hljs-attr">count</span>: <span class="hljs-number">0</span><br>&#125;);<br><br><span class="hljs-comment">// state.count 会自动变为响应式的</span><br></code></pre></td></tr></table></figure>
 </li>
-<li><p>branch现在一般用main</p>
-</li>
-<li><p>token刚才生成的复制进去</p>
-</li>
-<li><p>path可以无也可以自己创建一个文件夹 仓库里得有这个文件夹</p>
-</li>
-<li><p>Url按下面格式填</p>
-  <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//</span>raw.githubusercontent.com<span class="hljs-regexp">/用户名/</span>仓库名/main<br></code></pre></td></tr></table></figure>
+<li><p><strong><code>ref()</code>：</strong></p>
+<ul>
+<li><code>ref()</code> 函数用于创建一个具有响应式特性的简单数据值（比如数字、字符串等）。</li>
+<li>当你使用 <code>ref()</code> 包裹一个简单的数据值时，它会返回一个包含该值的响应式对象。但是，对于对象类型的数据，<code>ref()</code> 不会自动转换为响应式对象。</li>
+<li><code>ref()</code> 返回的是一个包含 <code>.value</code> 属性的普通对象，当你需要获取数据时，需要通过 <code>.value</code> 属性来访问。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> &#123; ref &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>;<br><br><span class="hljs-keyword">const</span> count = <span class="hljs-title function_">ref</span>(<span class="hljs-number">0</span>);<br><br><span class="hljs-comment">// count.value 会自动变为响应式的</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<p>总结一下，主要区别在于：</p>
+<ul>
+<li><code>reactive()</code> 用于创建响应式对象，它处理<strong>复杂的对象类型数据</strong>，并且返回一个 <strong>Proxy 对象</strong>。</li>
+<li><code>ref()</code> 用于创建响应式简单数据值，它处理<strong>基本的数据类型</strong>，返回一个<strong>带有 <code>.value</code> 属性的普通对象</strong>。</li>
+</ul>
+<p>&nbsp;</p>
+<blockquote>
+<p>值得注意的是，<code>reactive()</code> 返回的是一个原始对象的Proxy，它和原始对象是<strong>不相等</strong>的：</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> raw = &#123;&#125;<br><span class="hljs-keyword">const</span> proxy = <span class="hljs-title function_">reactive</span>(raw)<br><br><span class="hljs-comment">// 代理对象和原始对象不是全等的</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(proxy === raw) <span class="hljs-comment">// false</span><br></code></pre></td></tr></table></figure>
+
+
 
 <blockquote>
-<p>别用网上说的什么cdn.jsdelivr.net&#x2F;，那个好像被禁了</p>
+<p>只有代理对象是响应式的，更改原始对象不会触发更新。因此，使用 Vue 的响应式系统的最佳实践是 <strong>仅使用你声明对象的代理版本</strong>。</p>
 </blockquote>
-</li>
-<li><p>origin是github</p>
-</li>
+<blockquote>
+<p><code>reactive()</code> 函数用于创建一个具有响应式特性的对象。当你使用 <code>reactive()</code> 包裹一个对象时，<strong>该对象的所有属性都会变成响应式的</strong>，<strong>但是该对象本身不会变成响应式的</strong>。因此，<code>reactive()</code> 函数返回的是一个 Proxy 对象，而不是一个响应式对象本身。</p>
+</blockquote>
+<blockquote>
+<p>为保证访问代理的一致性，对同一个原始对象调用 <code>reactive()</code> 会总是返回同样的代理对象，而对一个已存在的代理对象调用 <code>reactive()</code> 会返回其本身：</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 在同一个对象上调用 reactive() 会返回相同的代理</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">reactive</span>(raw) === proxy) <span class="hljs-comment">// true</span><br><br><span class="hljs-comment">// 在一个代理上调用 reactive() 会返回它自己</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">reactive</span>(proxy) === proxy) <span class="hljs-comment">// true</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> proxy = <span class="hljs-title function_">reactive</span>(&#123;&#125;)<br><br><span class="hljs-keyword">const</span> raw = &#123;&#125;<br>proxy.<span class="hljs-property">nested</span> = raw<br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(proxy.<span class="hljs-property">nested</span> === raw) <span class="hljs-comment">// false</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>但是<code>reactive()</code> API 有一些局限性：</strong></p>
+<ul>
+<li>有限的值类型</li>
+<li>不能替换整个对象</li>
+<li>对解构操作不友好</li>
 </ul>
-<p>点击确认 然后回到上传区测试一下</p>
-<p>正常情况上传是没有问题的，如果遇到上传失败(和我一样)，<strong>不要急不要急</strong>，可以参考下面的解决方案</p>
-<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><p>我半个月前遇到过不同的报错，你的报错具体可以去日志里面查看</p>
-<p>我今天最后解决的根源，竟然是vpn。。。</p>
-<p>参考这篇<a target="_blank" rel="noopener" href="https://blog.csdn.net/zmy766138/article/details/128082713#:~:text=%E5%85%B3%E9%97%ADsteam%2B%2B%E5%90%8E%E5%86%8D%E6%AC%A1%E4%B8%8A%E4%BC%A0%20%E6%88%90%E5%8A%9F%E8%A7%A3%E5%86%B3%EF%BC%8C%E7%BB%8F%E8%BF%87%E6%B5%8B%E8%AF%95%EF%BC%8C%E4%BE%8B%E5%A6%82fastGitHub%E8%BF%99%E7%B1%BB%E8%BD%AF%E4%BB%B6%EF%BC%8C%E9%83%BD%E6%9C%89%E5%8F%AF%E8%83%BD%E5%AF%BC%E8%87%B4%E8%BF%99%E7%B1%BB%E9%97%AE%E9%A2%98%EF%BC%8C%E5%8F%AF%E4%BB%A5,%E5%B0%9D%E8%AF%95uu%E5%8A%A0%E9%80%9F%E5%99%A8%20%EF%BC%8C%E9%80%89%E6%8B%A9%E5%AD%A6%E6%9C%AF%E8%B5%84%E6%BA%90%E5%8A%A0%E9%80%9F%EF%BC%8C%E5%85%8D%E8%B4%B9%EF%BC%8C%E5%8F%AF%E8%A7%A3%E5%86%B3%E5%A6%82%E4%B8%8A%E9%97%AE%E9%A2%98%EF%BC%8C%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8%E5%9B%BE%E5%BA%8A">关于picgo图床报错“unable to verify the first certificate”</a></p>
-<p>就是<strong>下个steam++</strong>, 然后用<strong>学术资源加速</strong></p>
-<p>下好之后莫名其妙就上传成功了，然后换回我的clash竟然莫名其妙也成功了，不知道为什么，反正成功了就是了</p>
-<p>多试一下，有时候就是玄学</p>
-<h3 id="结合typora"><a href="#结合typora" class="headerlink" title="结合typora"></a>结合typora</h3><p>很熟悉的工具啊 ， 打开<strong>文件 – 偏好设置 – 图像</strong></p>
-<p><strong>上传服务</strong>（PicGo) 和<strong>picgo路径</strong>（可执行文件路径）填一下</p>
-<p><img src="https://raw.githubusercontent.com/JerryC66/picgo-repo/main/img/image-20240211202251227.png" srcset="/img/loading.gif" lazyload></p>
-<p><strong>然后就可以开启博客丝滑之旅了</strong>！！！</p>
+<p><strong>所以建议使用 <code>ref()</code> 作为声明响应式状态的主要 API</strong></p>
 
                 
               </div>
@@ -388,8 +400,15 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%B7%A5%E5%85%B7/" class="category-chain-item">工具</a>
+  <a href="/categories/%E5%89%8D%E7%AB%AF/" class="category-chain-item">前端</a>
   
+  
+    <span>></span>
+    
+  <a href="/categories/%E5%89%8D%E7%AB%AF/Vue/" class="category-chain-item">Vue</a>
+  
+  
+
   
 
       </span>
@@ -417,9 +436,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/02/15/Vue%E5%BC%82%E6%AD%A5%E6%9B%B4%E6%96%B0%E6%9C%BA%E5%88%B6%E5%8F%8AnextTick/" title="Vue异步更新机制 | $nextTick原理">
+                      <a href="/2024/02/16/Vue%E6%9D%A1%E4%BB%B6%E6%B8%B2%E6%9F%93/" title="Vue条件渲染 | v-if和v-show">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Vue异步更新机制 | $nextTick原理</span>
+                        <span class="hidden-mobile">Vue条件渲染 | v-if和v-show</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -427,8 +446,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/02/04/%E7%9B%98%E7%82%B9pandas%E7%9A%84%E9%AB%98%E5%85%89%E7%9E%AC%E9%97%B4/" title="盘点pandas的高光瞬间">
-                        <span class="hidden-mobile">盘点pandas的高光瞬间</span>
+                      <a href="/2024/02/15/Vue%E5%BC%82%E6%AD%A5%E6%9B%B4%E6%96%B0%E6%9C%BA%E5%88%B6%E5%8F%8AnextTick/" title="Vue异步更新机制 | $nextTick原理">
+                        <span class="hidden-mobile">Vue异步更新机制 | $nextTick原理</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

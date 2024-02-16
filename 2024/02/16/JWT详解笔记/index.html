@@ -16,24 +16,24 @@
   <meta name="author" content="Rey">
   <meta name="keywords" content="">
   
-    <meta name="description" content="👍GitHub+PicGo图床搭建不出错指南&amp;常见问题">
+    <meta name="description" content="🔑JWT（JSON Web Token）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GitHub+PicGo图床设置">
-<meta property="og:url" content="http://jerrycc.cn/2024/02/11/github-pigco%E5%9B%BE%E5%BA%8A%E8%AE%BE%E7%BD%AE/index.html">
+<meta property="og:title" content="JWT详解笔记">
+<meta property="og:url" content="http://jerrycc.cn/2024/02/16/JWT%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Rey&#39;s blog">
-<meta property="og:description" content="👍GitHub+PicGo图床搭建不出错指南&amp;常见问题">
+<meta property="og:description" content="🔑JWT（JSON Web Token）">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://jerrycc.cn/img/picgo.jpg">
-<meta property="article:published_time" content="2024-02-11T10:35:14.000Z">
-<meta property="article:modified_time" content="2024-02-11T13:58:15.365Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/JerryC66/picgo-repo/main/img/image-20240216203256224.png">
+<meta property="article:published_time" content="2024-02-16T12:25:59.000Z">
+<meta property="article:modified_time" content="2024-02-16T12:37:58.766Z">
 <meta property="article:author" content="Rey">
 <meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://jerrycc.cn/img/picgo.jpg">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/JerryC66/picgo-repo/main/img/image-20240216203256224.png">
   
   
   
-  <title>GitHub+PicGo图床设置 - Rey&#39;s blog</title>
+  <title>JWT详解笔记 - Rey&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -228,7 +228,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="GitHub+PicGo图床设置"></span>
+            <span id="subtitle" data-typed-text="JWT详解笔记"></span>
           
         </div>
 
@@ -239,8 +239,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-02-11 18:35" pubdate>
-          2024年2月11日 晚上
+        <time datetime="2024-02-16 20:25" pubdate>
+          2024年2月16日 晚上
         </time>
       </span>
     
@@ -251,7 +251,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          602 字
+          737 字
         
       </span>
     
@@ -262,7 +262,7 @@
         
         
         
-          6 分钟
+          7 分钟
         
       </span>
     
@@ -307,69 +307,104 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">GitHub+PicGo图床设置</h1>
+            <h1 id="seo-header">JWT详解笔记</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="👍GitHub-PicGo图床搭建不出错指南-常见问题"><a href="#👍GitHub-PicGo图床搭建不出错指南-常见问题" class="headerlink" title="👍GitHub+PicGo图床搭建不出错指南&amp;常见问题"></a>👍GitHub+PicGo图床搭建不出错指南&amp;常见问题</h2><span id="more"></span>
+                <h2 id="🔑JWT（JSON-Web-Token）"><a href="#🔑JWT（JSON-Web-Token）" class="headerlink" title="🔑JWT（JSON Web Token）"></a>🔑JWT（JSON Web Token）</h2><span id="more"></span>
 
-<p>前段时间写博客写图片路径太痛苦了，特别是截屏的图片</p>
-<p>（众所周知）PicGo是一款非常好用的图床工具，尤其搭配typora格外丝滑，很适合写博客</p>
-<p>本人最初是根据下面这篇文章搭建的图床</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/yefcion/article/details/88412025">PicGo+GitHub搭建个人图床工具</a></p>
-<p>配置好了之后一直上传不成功，困扰停滞了半个月，今天终于解决</p>
-<p>按照以下步骤来，应该是不出错指南吼吼</p>
-<hr>
-<h3 id="前置工作"><a href="#前置工作" class="headerlink" title="前置工作"></a>前置工作</h3><ul>
-<li><p>在github创建一个<strong>public</strong>的仓库，用于存放图片</p>
+<p><strong>JWT（JSON Web Token）</strong>是一种开放标准（RFC 7519），用于在网络应用之间安全地传输信息。它是一种轻量级的认证和授权机制，常用于身份验证和信息传递。</p>
+<p>JWT由三部分组成，通过点号（.）分隔开来：</p>
+<ol>
+<li><p><strong>Header（头部）</strong>：包含关于令牌的元数据和算法的信息。例如，指定令牌使用的签名算法（例如HMAC、RSA等）和令牌类型（如JWT）。</p>
 </li>
-<li><p>点击github头像 – settings – developer settings – tokens(classic)</p>
-<p>  生成一个token,<strong>复制到一个地方</strong></p>
-<p>  <img src="https://raw.githubusercontent.com/JerryC66/picgo-repo/main/img/image-20240211201119607.png" srcset="/img/loading.gif" lazyload></p>
-</li>
-</ul>
-<h3 id="安装PicGo"><a href="#安装PicGo" class="headerlink" title="安装PicGo"></a>安装PicGo</h3><p>网上有很多资源，可以去官网下载，也可以去别人博客里面找网盘安装包，这里不过多赘述。我用的2.3.0</p>
-<blockquote>
-<p>这里小小提醒一点：<strong>最好不要安装beta测试版</strong></p>
-</blockquote>
-<p>很简单的安装过程</p>
-<h3 id="图床配置"><a href="#图床配置" class="headerlink" title="图床配置"></a>图床配置</h3><blockquote>
-<p>这里推荐用githubPlus插件</p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/JerryC66/picgo-repo/main/img/image-20240211200501729.png" srcset="/img/loading.gif" lazyload></p>
+<li><p><strong>Payload（负载）</strong>：包含称为声明（claims）的信息，它是JWT的主要内容。声明是关于实体（通常是用户）和其他数据的陈述。有三种类型的声明：</p>
 <ul>
-<li><p>repo填仓库地址</p>
-<p>  注意按上面的格式来 <strong>斜杠只有中间一个</strong></p>
+<li>Registered claims（注册声明）：这些是预定义的声明，包括iss（令牌签发者）、exp（过期时间）、sub（主题）等。</li>
+<li>Public claims（公共声明）：这些是自定义的声明，根据应用程序的需要定义。</li>
+</ul>
 </li>
-<li><p>branch现在一般用main</p>
+</ol>
+<ul>
+<li>Private claims（私有声明）：这些是自定义的声明，用于在同意的各方之间共享信息，但不是注册的或公共的声明。</li>
+</ul>
+<ol start="3">
+<li><p><strong>Signature（签名）</strong>：使用头部和负载经过签名算法计算得出的签名，用于验证令牌的完整性和真实性。签名使用一个密钥（对称加密）或一对公私钥（非对称加密）进行生成和验证。</p>
+<p> &nbsp;</p>
 </li>
-<li><p>token刚才生成的复制进去</p>
+</ol>
+<p><strong>JWT的工作流程如下：</strong></p>
+<ol>
+<li>用户通过提供其凭据（如用户名和密码）进行身份验证。</li>
+<li>服务器验证凭据，并在验证成功后生成JWT。</li>
+<li>服务器将JWT发送回客户端。</li>
+<li>客户端将JWT存储在本地（通常是在浏览器的本地存储或Cookie中）。</li>
+<li>客户端在每个后续请求中将JWT包含在请求的头部、查询参数或Cookie中。</li>
+<li>服务器验证JWT的签名和有效期，并根据其中的声明对请求进行授权和身份验证。</li>
+</ol>
+<p>由于JWT是自包含的，它不需要在服务器端存储会话信息，因此具有良好的可扩展性。它也可以在分布式系统中使用，允许不同服务之间共享用户身份和授权信息。</p>
+<hr>
+<p>&nbsp;</p>
+<h3 id="Structure"><a href="#Structure" class="headerlink" title="Structure"></a>Structure</h3><p>A JWT contains three parts:</p>
+<ul>
+<li><p><strong>头部 Header</strong></p>
+<p>  : Consists of two parts:</p>
+<ul>
+<li>The signing algorithm that’s being used.</li>
+<li>The type of token, which, in this case, is mostly “JWT”.</li>
+</ul>
 </li>
-<li><p>path可以无也可以自己创建一个文件夹 仓库里得有这个文件夹</p>
+<li><p><strong>载荷 Payload</strong>: The payload contains the claims or the JSON object.</p>
 </li>
-<li><p>Url按下面格式填</p>
-  <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//</span>raw.githubusercontent.com<span class="hljs-regexp">/用户名/</span>仓库名/main<br></code></pre></td></tr></table></figure>
-
-<blockquote>
-<p>别用网上说的什么cdn.jsdelivr.net&#x2F;，那个好像被禁了</p>
-</blockquote>
-</li>
-<li><p>origin是github</p>
+<li><p><strong>签名 Signature</strong>: A string that is generated via a cryptographic algorithm that can be used to verify the integrity of the JSON payload.</p>
 </li>
 </ul>
-<p>点击确认 然后回到上传区测试一下</p>
-<p>正常情况上传是没有问题的，如果遇到上传失败(和我一样)，<strong>不要急不要急</strong>，可以参考下面的解决方案</p>
-<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><p>我半个月前遇到过不同的报错，你的报错具体可以去日志里面查看</p>
-<p>我今天最后解决的根源，竟然是vpn。。。</p>
-<p>参考这篇<a target="_blank" rel="noopener" href="https://blog.csdn.net/zmy766138/article/details/128082713#:~:text=%E5%85%B3%E9%97%ADsteam%2B%2B%E5%90%8E%E5%86%8D%E6%AC%A1%E4%B8%8A%E4%BC%A0%20%E6%88%90%E5%8A%9F%E8%A7%A3%E5%86%B3%EF%BC%8C%E7%BB%8F%E8%BF%87%E6%B5%8B%E8%AF%95%EF%BC%8C%E4%BE%8B%E5%A6%82fastGitHub%E8%BF%99%E7%B1%BB%E8%BD%AF%E4%BB%B6%EF%BC%8C%E9%83%BD%E6%9C%89%E5%8F%AF%E8%83%BD%E5%AF%BC%E8%87%B4%E8%BF%99%E7%B1%BB%E9%97%AE%E9%A2%98%EF%BC%8C%E5%8F%AF%E4%BB%A5,%E5%B0%9D%E8%AF%95uu%E5%8A%A0%E9%80%9F%E5%99%A8%20%EF%BC%8C%E9%80%89%E6%8B%A9%E5%AD%A6%E6%9C%AF%E8%B5%84%E6%BA%90%E5%8A%A0%E9%80%9F%EF%BC%8C%E5%85%8D%E8%B4%B9%EF%BC%8C%E5%8F%AF%E8%A7%A3%E5%86%B3%E5%A6%82%E4%B8%8A%E9%97%AE%E9%A2%98%EF%BC%8C%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8%E5%9B%BE%E5%BA%8A">关于picgo图床报错“unable to verify the first certificate”</a></p>
-<p>就是<strong>下个steam++</strong>, 然后用<strong>学术资源加速</strong></p>
-<p>下好之后莫名其妙就上传成功了，然后换回我的clash竟然莫名其妙也成功了，不知道为什么，反正成功了就是了</p>
-<p>多试一下，有时候就是玄学</p>
-<h3 id="结合typora"><a href="#结合typora" class="headerlink" title="结合typora"></a>结合typora</h3><p>很熟悉的工具啊 ， 打开<strong>文件 – 偏好设置 – 图像</strong></p>
-<p><strong>上传服务</strong>（PicGo) 和<strong>picgo路径</strong>（可执行文件路径）填一下</p>
-<p><img src="https://raw.githubusercontent.com/JerryC66/picgo-repo/main/img/image-20240211202251227.png" srcset="/img/loading.gif" lazyload></p>
-<p><strong>然后就可以开启博客丝滑之旅了</strong>！！！</p>
+<p><img src="https://raw.githubusercontent.com/JerryC66/picgo-repo/main/img/image-20240216203256224.png" srcset="/img/loading.gif" lazyload alt="image-20240216203256224"></p>
+<p>&nbsp;</p>
+<h3 id="How-do-they-work"><a href="#How-do-they-work" class="headerlink" title="How do they work"></a>How do they work</h3><p>The easiest way to explain how a JWT works is via an example. We will start by creating a JWT for a specific JSON payload and then go about verifying it:</p>
+<h5 id="1-Create-a-JSON"><a href="#1-Create-a-JSON" class="headerlink" title="1) Create a JSON"></a>1) Create a JSON</h5><p>Let’s take the following minimal JSON payload:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;userId&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;abcd123&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;expiry&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1646635611301</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>&nbsp;</p>
+<h5 id="2-Create-a-JWT-signing-key-and-decide-the-signing-algorithm"><a href="#2-Create-a-JWT-signing-key-and-decide-the-signing-algorithm" class="headerlink" title="2) Create a JWT signing key and decide the signing algorithm"></a>2) Create a JWT signing key and decide the signing algorithm</h5><p>First, we need a signing key and an algorithm to use. We can generate a signing key using any secure random source. For the purpose of this post, let’s use:</p>
+<ul>
+<li>Signing key: <code>NTNv7j0TuYARvmNMmWXo6fKvM4o6nv/aUi9ryX38ZH+L1bkrnD1ObOQ8JAUmHCBq7Iy7otZcyAagBLHVKvvYaIpmMuxmARQ97jUVG16Jkpkp1wXOPsrF9zwew6TpczyHkHgX5EuLg2MeBuiT/qJACs1J0apruOOJCg/gOtkjB4c=</code></li>
+<li>Signing algorithm: <code>HMAC + SHA256</code>, also known as <code>HS256</code>.</li>
+</ul>
+<p>&nbsp;</p>
+<h5 id="3-Creating-the-“Header”"><a href="#3-Creating-the-“Header”" class="headerlink" title="3) Creating the “Header”"></a>3) Creating the “Header”</h5><p>This contains the information about which signing algorithm is used. Like the payload, this is also a JSON and will be appended to the start of the JWT (hence the name header):</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;typ&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;JWT&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;alg&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;HS256&quot;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>&nbsp;</p>
+<h5 id="4-Create-a-signature"><a href="#4-Create-a-signature" class="headerlink" title="4) Create a signature"></a>4) Create a signature</h5><ul>
+<li><p>First, we remove all the spaces from the payload JSON and then base64 encode it to give us <code>eyJ1c2VySWQiOiJhYmNkMTIzIiwiZXhwaXJ5IjoxNjQ2NjM1NjExMzAxfQ</code>. You can try pasting this string in an <a target="_blank" rel="noopener" href="https://www.base64decode.org/">online base64 decoder</a> to retrieve our JSON.</p>
+</li>
+<li><p>Similarly, we remove the spaces from the header JSON and base64 encode it to give us: <code>eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9</code>.</p>
+</li>
+<li><p>We concatenate both the base 64 strings, with a <code>.</code> in the middle like <code>&lt;header&gt;.&lt;payload&gt;</code>, giving us <code>eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiJhYmNkMTIzIiwiZXhwaXJ5IjoxNjQ2NjM1NjExMzAxfQ</code>. There is no special reason to do it this way other than to set a convention that the industry can follow.</p>
+</li>
+<li><p>Now we run the <code>Base64 + HMACSHA256</code> function on the above concatenated string and the secret to give us the signature:</p>
+  <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs text">Base64URLSafe(<br>    HMACSHA256(&quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiJhYmNkMTIzIiwiZXhwaXJ5IjoxNjQ2NjM1NjExMzAxfQ&quot;, &quot;NTNv7j0TuYARvmNMmWXo6fKvM4o6nv/aUi9ryX38ZH+L1bkrnD1ObOQ8JAUmHCBq7Iy7otZcyAagBLHVKvvYaIpmMuxmARQ97jUVG16Jkpkp1wXOPsrF9zwew6TpczyHkHgX5EuLg2MeBuiT/qJACs1J0apruOOJCg/gOtkjB4c=&quot;)<br>)<br><br>Results in:<br>3Thp81rDFrKXr3WrY1MyMnNK8kKoZBX9lg-JwFznR-M<br></code></pre></td></tr></table></figure>
+
+<p>  We base64 encode it only as an industry convention.</p>
+</li>
+</ul>
+<p>&nbsp;</p>
+<h5 id="5-Creating-the-JWT"><a href="#5-Creating-the-JWT" class="headerlink" title="5) Creating the JWT"></a>5) Creating the JWT</h5><p>Finally, we append the generated signature like <code>&lt;header&gt;.&lt;body&gt;.&lt;signature&gt;</code> to create our JWT:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiJhYmNkMTIzIiwiZXhwaXJ5IjoxNjQ2NjM1NjExMzAxfQ.3Thp81rDFrKXr3WrY1MyMnNK8kKoZBX9lg-JwFznR-M<br></code></pre></td></tr></table></figure>
+
+<p>&nbsp;</p>
+<h5 id="6-Verifying-the-JWT"><a href="#6-Verifying-the-JWT" class="headerlink" title="6) Verifying the JWT"></a>6) Verifying the JWT</h5><p>The auth server will send the JWT back to the client’s frontend. The frontend will attach the JWT to network requests to the client’s api layer. The api layer will do the following steps to verify the JWT:</p>
+<ul>
+<li>Fetches the header part of the JWT (<code>eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9</code>).</li>
+<li>Does base64 decoding on it to get the plain text JSON: <code>&#123;&quot;typ&quot;:&quot;JWT&quot;,&quot;alg&quot;:&quot;HS256&quot;&#125;</code></li>
+<li>Verifies that the <code>typ</code> field’s value is <code>JWT</code> and the <code>alg</code> is <code>HS256</code>. If not, it would reject the JWT.</li>
+<li>Fetches signing secret key and runs the same <code>Base64URLSafe(HMACSHA256(...))</code> operation as step number (4) on the header and body of the incoming JWT. Note that if the incoming JWT’s body is different, this step will generate a different signature than in step (4).</li>
+<li>Checks that the generated signature is the same as the signature from the incoming JWT. If it’s not, then the JWT is rejected.</li>
+<li>We base64 decode the body of the JWT (<code>eyJ1c2VySWQiOiJhYmNkMTIzIiwiZXhwaXJ5IjoxNjQ2NjM1NjExMzAxfQ</code>) to give us <code>&#123;&quot;userId&quot;:&quot;abcd123&quot;,&quot;expiry&quot;:1646635611301&#125;</code>.</li>
+<li>We reject the JWT if the current time (in milliseconds) is greater than the JSON’s <code>expiry</code> time (since the JWT is expired).</li>
+</ul>
 
                 
               </div>
@@ -388,7 +423,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%B7%A5%E5%85%B7/" class="category-chain-item">工具</a>
+  <a href="/categories/Web/" class="category-chain-item">Web</a>
   
   
 
@@ -417,9 +452,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/02/15/Vue%E5%BC%82%E6%AD%A5%E6%9B%B4%E6%96%B0%E6%9C%BA%E5%88%B6%E5%8F%8AnextTick/" title="Vue异步更新机制 | $nextTick原理">
+                      <a href="/2024/02/16/%E4%B8%80%E4%BA%9B%E5%BE%88nice%E7%9A%84Vue%E5%AE%98%E6%96%B9%E7%A4%BA%E4%BE%8B/" title="一些很nice的Vue官方示例">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Vue异步更新机制 | $nextTick原理</span>
+                        <span class="hidden-mobile">一些很nice的Vue官方示例</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -427,8 +462,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/02/04/%E7%9B%98%E7%82%B9pandas%E7%9A%84%E9%AB%98%E5%85%89%E7%9E%AC%E9%97%B4/" title="盘点pandas的高光瞬间">
-                        <span class="hidden-mobile">盘点pandas的高光瞬间</span>
+                      <a href="/2024/02/16/%E5%AF%B9%E8%B1%A1%E8%A7%A3%E6%9E%84/" title="JS对象解构">
+                        <span class="hidden-mobile">JS对象解构</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -24,7 +24,7 @@
 <meta property="og:description" content="一个简单的todoList一个简单的todoList  表单 列表渲染  表单输入绑定表单输入绑定 123456789101112131415161718&lt;script setup&gt;import &#123; ref &#125; from &#x27;vue&#x27;const checkedNames &#x3D; ref([])&lt;&#x2F;script&gt;&lt;template&amp;gt">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-02-16T12:48:24.000Z">
-<meta property="article:modified_time" content="2024-02-17T05:45:12.141Z">
+<meta property="article:modified_time" content="2024-02-19T06:36:05.209Z">
 <meta property="article:author" content="Rey">
 <meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary_large_image">
@@ -249,7 +249,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          150 字
+          262 字
         
       </span>
     
@@ -260,7 +260,7 @@
         
         
         
-          2 分钟
+          3 分钟
         
       </span>
     
@@ -317,6 +317,15 @@
 </ul>
 <h3 id="表单输入绑定"><a href="#表单输入绑定" class="headerlink" title="表单输入绑定"></a>表单输入绑定</h3><p><a target="_blank" rel="noopener" href="https://cn.vuejs.org/guide/essentials/forms.html">表单输入绑定</a></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-keyword">import</span> &#123; ref &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span></span><br><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-keyword">const</span> checkedNames = <span class="hljs-title function_">ref</span>([])</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Checked names: &#123;&#123; checkedNames &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;jack&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;Jack&quot;</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;checkedNames&quot;</span> /&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;jack&quot;</span>&gt;</span>Jack<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br> <br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;john&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;John&quot;</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;checkedNames&quot;</span> /&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;john&quot;</span>&gt;</span>John<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br> <br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;mike&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;Mike&quot;</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;checkedNames&quot;</span> /&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;mike&quot;</span>&gt;</span>Mike<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="博客渲染"><a href="#博客渲染" class="headerlink" title="博客渲染"></a>博客渲染</h3><p><a target="_blank" rel="noopener" href="https://play.vuejs.org/#eNp9U01vm0AQ/SujVSU7qg113RPCVprKlVqprdVU7SH04MBgrw27aHdx7CL+e2cXMERKzImZ92bmzcdW7GNReMcSWcBCHSteGNBoymIZCZ4XUhmoQGEKNaRK5jAi6ugC3WVyu5batJjndw6bkWgAkYilIEJBTg0Lm2r8YIEKeBLAbAKGmwwDGH07w16WSuAZnrjZwW/KAPWk577vubbMlovtK8x5z/yzO1scuAYtIS0FMSPx9yYSQ2WfpTD3/B+2AmcEh34zDZoDGQbzItsYtJYJE36EQJtzhouIVZC20cHzXG9hhLktxygK6Au76TQmwHGaSkUpbBhw0QwpYh0cHPDcoh5PBn7XXIc4owdvUWQbtcWpwZNpOb2kBbzzZh15GV725RSGPjVGf6F/aZdN2HClLxxJgikXuFay0OOHkRMzsuNt/KucG+sfinLwq+MlGXa8cbbRmuQ/UvWp7aGf4u7DsqqaBUNdhz7ZLfJYGiMF3MYZjw8U/Aap/Ph58RtKtGocYB2h30RdmYDRdCkp33p7LQWNoHKHzWKZFzxD9aMwnC4pYgE4xGKbLJNPX53PqBLdbbqYHcaHF/x7fbK+iK0ValRHWugFM1Yr9W/h1f130jwAc5mUdv1XwJ+oZVZajQ3trhQJyR7wnNov7knTo/qlVyeDQndNWaGW2bywiNEdfLrSei937s1dXCRqVv8H8l92BQ==">blog渲染</a></p>
+<ul>
+<li>组件基础</li>
+<li>事件监听</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;script setup&gt;<br>import &#123; ref &#125; from &#x27;vue&#x27;<br>import BlogPost from &#x27;./BlogPost.vue&#x27;<br>  <br>const posts = ref([<br>  &#123; id: 1, title: &#x27;My journey with Vue&#x27; &#125;,<br>  &#123; id: 2, title: &#x27;Blogging with Vue&#x27; &#125;,<br>  &#123; id: 3, title: &#x27;Why Vue is so fun&#x27; &#125;<br>])<br><br>const postFontSize = ref(1)<br>&lt;/script&gt;<br><br>&lt;template&gt;<br>	&lt;div :style=&quot;&#123; fontSize: postFontSize + &#x27;em&#x27; &#125;&quot;&gt;<br>    &lt;BlogPost<br>      v-for=&quot;post in posts&quot;<br>      :key=&quot;post.id&quot;<br>      :title=&quot;post.title&quot;<br>      @enlarge-text=&quot;postFontSize += 0.1&quot;<br>    &gt;&lt;/BlogPost&gt;<br>  &lt;/div&gt;<br>&lt;/template&gt;<br></code></pre></td></tr></table></figure>
 
 
                 

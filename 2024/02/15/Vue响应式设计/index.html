@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://jerrycc.cn/img/%E5%93%8D%E5%BA%94%E5%BC%8F.png">
 <meta property="article:published_time" content="2024-02-15T11:40:50.000Z">
-<meta property="article:modified_time" content="2024-02-15T13:17:53.511Z">
+<meta property="article:modified_time" content="2024-02-19T14:41:10.621Z">
 <meta property="article:author" content="Rey">
 <meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary_large_image">
@@ -251,7 +251,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k 字
+          1.3k 字
         
       </span>
     
@@ -345,7 +345,7 @@
 <ul>
 <li><code>ref()</code> 函数用于创建一个具有响应式特性的简单数据值（比如数字、字符串等）。</li>
 <li>当你使用 <code>ref()</code> 包裹一个简单的数据值时，它会返回一个包含该值的响应式对象。但是，对于对象类型的数据，<code>ref()</code> 不会自动转换为响应式对象。</li>
-<li><code>ref()</code> 返回的是一个包含 <code>.value</code> 属性的普通对象，当你需要获取数据时，需要通过 <code>.value</code> 属性来访问。</li>
+<li><code>ref()</code> 返回的是一个包含 <code>.value</code> 属性的普通对象，当你需要获取数据时，需要<strong>通过 <code>.value</code> 属性来访问</strong>。</li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> &#123; ref &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>;<br><br><span class="hljs-keyword">const</span> count = <span class="hljs-title function_">ref</span>(<span class="hljs-number">0</span>);<br><br><span class="hljs-comment">// count.value 会自动变为响应式的</span><br></code></pre></td></tr></table></figure></li>
 </ol>
@@ -382,7 +382,11 @@
 <li>对解构操作不友好</li>
 </ul>
 <p><strong>所以建议使用 <code>ref()</code> 作为声明响应式状态的主要 API</strong></p>
-
+<h2 id="💡shallowRef"><a href="#💡shallowRef" class="headerlink" title="💡shallowRef()"></a>💡<code>shallowRef()</code></h2><ul>
+<li><strong>浅层次响应</strong></li>
+<li>只到<code>x.value</code>，再深层的改变(比如<code>x.value.name</code>)就不会响应了</li>
+</ul>
+<h2 id="💡triggerRef"><a href="#💡triggerRef" class="headerlink" title="💡triggerRef()"></a>💡<code>triggerRef()</code></h2>
                 
               </div>
             

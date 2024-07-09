@@ -1,0 +1,898 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.JPG">
+  <link rel="icon" href="/img/icon.JPG">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#3f4a6e">
+  <meta name="author" content="Rey">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="PRPL模式 🚀 Preload | Render | Pre-cache | Lazy Load">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PRPL模式详解 | PRPL patterns">
+<meta property="og:url" content="http://jerrycc.cn/2024/03/21/PRPL/index.html">
+<meta property="og:site_name" content="Rey&#39;s blog">
+<meta property="og:description" content="PRPL模式 🚀 Preload | Render | Pre-cache | Lazy Load">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://jerrycc.cn/img/PRPL.png">
+<meta property="article:published_time" content="2024-03-21T03:45:30.000Z">
+<meta property="article:modified_time" content="2024-07-09T07:06:53.208Z">
+<meta property="article:author" content="Rey">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://jerrycc.cn/img/PRPL.png">
+  
+  
+  
+  <title>PRPL模式详解 | PRPL patterns - Rey&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"jerrycc.cn","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"WONRXzPmzl9U9JyH8uvdQPar-MdYXbMMI","app_key":"lxrHzWM0YiioqzU1aYTXLFok","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.1.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Rey</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/background.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="PRPL模式详解 | PRPL patterns"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-03-21 11:45" pubdate>
+          2024年3月21日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          24 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> times
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">PRPL模式详解 | PRPL patterns</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="PRPL模式-🚀-Preload-Render-Pre-cache-Lazy-Load"><a href="#PRPL模式-🚀-Preload-Render-Pre-cache-Lazy-Load" class="headerlink" title="PRPL模式 🚀 Preload | Render | Pre-cache | Lazy Load"></a>PRPL模式 🚀 Preload | Render | Pre-cache | Lazy Load</h1><span id="more"></span>
+
+<h2 id="⭐Firstly"><a href="#⭐Firstly" class="headerlink" title="⭐Firstly"></a>⭐Firstly</h2><p>推荐一个网站 <a target="_blank" rel="noopener" href="https://www.patterns.dev/#patterns">patterns</a></p>
+<p>设计模式，渲染模式，性能模式……</p>
+<p><img src="https://raw.githubusercontent.com/JerryC66/picgo-repo/main/img/image-20240321115439466.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="🔑Intro"><a href="#🔑Intro" class="headerlink" title="🔑Intro"></a>🔑Intro</h2><h4 id="什么是PRPL"><a href="#什么是PRPL" class="headerlink" title="什么是PRPL?"></a>什么是PRPL?</h4><p>PRPL 描述了一种可以提高网页加载速度和交互性的模式</p>
+<ul>
+<li><strong>Preload</strong>：高优先级加载关键资源，加快页面加载速度</li>
+<li><strong>Render</strong>：关键资源下载完后尽快渲染，而不是等待所有资源加载完毕再渲染</li>
+<li><strong>Pre-cache</strong>：首次访问时预缓存资源到本地，以便后续页面直接从缓存读取</li>
+<li><strong>Lazy load</strong>：延迟加载路由和非关键资源</li>
+</ul>
+<h4 id="为什么需要PRPL？"><a href="#为什么需要PRPL？" class="headerlink" title="为什么需要PRPL？"></a>为什么需要PRPL？</h4><ul>
+<li>当我们想访问一个网站时，我们首先必须向服务器发出请求以获取这些资源。入口点指向的文件从服务器返回，通常是我们应用程序的<strong>初始 HTML 文件</strong>，浏览器的 HTML 解析器在开始从服务器接收此数据后立即开始解析这些数据。如果解析器发现需要更多资源，例如样式表或脚本，则会向服务器发送<strong>另一个 HTTP 请求</strong>以获取这些资源</li>
+<li>反复请求资源并不是最佳选择，因为我们试图<strong>尽量减少客户端和服务器之间的往返次数</strong></li>
+<li>PRPL 模式的重点是<strong>优化初始加载</strong>。在初始路由完全加载和呈现之前，不会加载其他资源</li>
+</ul>
+<h4 id="HTTP-1-1-vs-HTTP-2"><a href="#HTTP-1-1-vs-HTTP-2" class="headerlink" title="HTTP&#x2F;1.1 vs. HTTP&#x2F;2"></a>HTTP&#x2F;1.1 vs. HTTP&#x2F;2</h4><p>![](<a target="_blank" rel="noopener" href="https://assets-global.website-files.com/5ff66329429d880392f6cba2/6149cbd7fd4bdd7c82f55cc6_http1">https://assets-global.website-files.com/5ff66329429d880392f6cba2/6149cbd7fd4bdd7c82f55cc6_http1</a> vs http2.png)</p>
+<ul>
+<li>HTTP&#x2F;1.1 在请求和响应中使用换行符分隔的<strong>纯文本协议</strong>，而 HTTP&#x2F;2 将请求和响应分割成“<strong>帧</strong>”。包含标头和正文字段的 HTTP 请求至少分为两个帧：<strong>标头帧和数据帧</strong></li>
+<li>HTTP&#x2F;1.1 客户端和服务器之间最多有6个TCP连接。通过同一个TCP连接发送新请求之前必须先解决之前的请求，如果一个请求耽误很长时间就会阻止后续请求，这个问题称为“<strong>队头阻塞</strong>”</li>
+<li>HTTP&#x2F;2 将消息编码为<strong>二进制数据</strong>，并建立了<strong>双向流</strong>，可以实现包含多个双向流的单个TCP。双向流可以在客户端和服务器之间承载多个请求和响应帧，处理好的帧可以及时返回，有效解决了队头阻塞的问题</li>
+</ul>
+<p><img src="https://assets-global.website-files.com/5ff66329429d880392f6cba2/6149cc3eca0fb2c370604259_http1%20vs%20http2%20responce%20time.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><p><strong>服务器推送 server push</strong></p>
+<ul>
+<li><p>与传统的HTTP请求-响应模式不同，服务器推送不需要等待客户端的请求，而是由服务器在检测到客户端需要某些资源时<strong>主动将这些资源推送给客户端</strong></p>
+</li>
+<li><p>客户端收到其他资源后，这些资源将<strong>存储在浏览器缓存中</strong>。当在解析入口文件时发现资源时，浏览器可以快速从缓存中获取资源，而不必向服务器发出 HTTP 请求</p>
+</li>
+<li><p>由于服务器无法知道客户端是否已经缓存了这些资源，因此即使已经存在于客户端的HTTP缓存中，服务器也可能会继续推送这些资源，导致客户端重复获取相同的资源。</p>
+<p>  PRPL模式提出了一种解决方案。它在页面初始加载完成后利用<strong>Service Worker</strong>来缓存这些额外的资源。这样，即使服务器再次推送相同的资源，客户端也可以通过Service Worker从本地缓存中获取这些资源，而不必再次从服务器请求。这样就避免了不必要的网络请求，提高了页面加载速度和用户体验。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="🌙lighthouse"><a href="#🌙lighthouse" class="headerlink" title="🌙lighthouse"></a>🌙lighthouse</h2><h4 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h4><p>Lighthouse 运行测评的过程有一套完整的生命周期，可以划分成三个主要流程：</p>
+<ul>
+<li><p><strong>Collecting（收集数据）：</strong>这一步会调用内置的<strong>驱动程序</strong>（Driver） ，其作用是通过谷歌开发工具协议（ Chrome DevTools Protocol） <strong>调起浏览器</strong>，并创建新的 tab 请求待测评的站点，通过浏览器<strong>采集站点数据</strong>并将结果（称之为 Artifacts）保存在本地临时目录。</p>
+</li>
+<li><p><strong>Auditing（分析数据）：</strong>这一步读取 Artifacts 数据，根据内置的评判策略逐条进行检查并计算出各项的数字形式得分。</p>
+</li>
+<li><p><strong>Report（生成报告）：</strong>这个流程将评分结果按照 <strong>PWA、性能、无障碍访问、最佳实践</strong>等纬度进行划分，以 JSON、HTML 等格式输出。</p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/JerryC66/picgo-repo/main/img/1424359-20210105180027391-233543594.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p><strong>PWA</strong></p>
+<p>渐进式网页应用（ProgressiveWebApp）</p>
+<p>PWA 可以在浏览器上访问，也可以单独安装成一个应用在系统上。</p>
+<p>当Chrome检测到当前访问的网页支持PWA的时候，在地址栏的右端就会出现一个安装按钮，点击即可将这个PWA变成一个应用安装到浏览器中。</p>
+<p>而在Android上，使用Chrome浏览PWA站点时也会有相应的提示，添加到应用之后就会自动进行编译安装。iOS上面使用Safari打开网站然后在菜单中选择添加到Home Screen就可以了，之后点开应用图标就会以独立应用形式出现，而不是通过Safari加载网页。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/JerryC66/picgo-repo/main/img/image-20240321202000812.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="一些指标"><a href="#一些指标" class="headerlink" title="一些指标"></a>一些指标</h4><ul>
+<li><p><strong>性能</strong></p>
+<ul>
+<li>首次内容绘制、可交互时间、速度指标</li>
+</ul>
+</li>
+<li><p><strong>访问无障碍</strong></p>
+<ul>
+<li>相关指标，比如屏幕阅读器友好</li>
+</ul>
+</li>
+<li><p><strong>最佳实践</strong></p>
+<ul>
+<li>比如推荐使用 https，跨域的跳转链接需要使用 rel 标识，不能使用废弃的 API等等</li>
+</ul>
+</li>
+<li><p><strong>搜索引擎优化</strong></p>
+<ul>
+<li>比如图片元素使用 alt 属性等等提高搜索引擎搜索排名，便于搜索引擎能找到你这个网站</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>可以测试自己的网站，在开发过程中持续监测和改进</p>
+<p>以下是上述pattern.dev网页的分析报告:</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/JerryC66/picgo-repo/main/img/image-20240321121047072.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="💡Preload"><a href="#💡Preload" class="headerlink" title="💡Preload"></a>💡Preload</h2><h4 id="预加载资源"><a href="#预加载资源" class="headerlink" title="预加载资源"></a>预加载资源</h4><p>preload 提供了一种声明式的命令，让浏览器**提前加载指定资源(加载后并不执行)**，在需要执行的时候再执行。提供的好处主要是</p>
+<ul>
+<li><strong>将加载和执行分离开</strong>，可不阻塞渲染和 document 的 onload 事件</li>
+<li>通过提前加载指定资源，<strong>可以提高网页的性能和用户体验</strong>，尤其是对于关键资源，如字体、CSS 文件、JavaScript 文件等。</li>
+</ul>
+<blockquote>
+<ul>
+<li>加载<ul>
+<li>加载指的是将 JavaScript 文件从服务器下载到浏览器的过程</li>
+</ul>
+</li>
+<li>执行<ul>
+<li>执行指的是浏览器解析和执行 JavaScript 代码的过程</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h4 id="使用preload"><a href="#使用preload" class="headerlink" title="使用preload"></a>使用<code>preload</code></h4><ul>
+<li><p><strong>语法</strong></p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;preload&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;url/to/preload&quot;</span> <span class="hljs-attr">as</span>=<span class="hljs-string">&quot;type&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong><code>as</code>可选属性</strong></p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/JerryC66/picgo-repo/main/img/1717126a3578ca8a~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="关于prefetch"><a href="#关于prefetch" class="headerlink" title="关于prefetch"></a>关于<code>prefetch</code></h4><ul>
+<li><p><code>prefetch</code> 用于在浏览器空闲时<strong>预先请求未来可能需要的资源</strong>，以加快后续页面加载速度。它告诉浏览器这些资源可能会在将来的页面中用到，但当前页面并不需要立即使用。</p>
+</li>
+<li><p>语法</p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;prefetch&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;url/to/preload&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h4><ul>
+<li><p><strong>字体提前加载</strong></p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;preload&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;font.woff2&quot;</span> <span class="hljs-attr">as</span>=<span class="hljs-string">&quot;font&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;font/woff2&quot;</span> <span class="hljs-attr">crossorigin</span> /&gt;</span><br></code></pre></td></tr></table></figure>
+
+</li>
+<li><p><strong>动态加载，但不执行</strong></p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 预先加载脚本</span><br><span class="hljs-keyword">let</span> link = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&quot;link&quot;</span>);<br>link.<span class="hljs-property">href</span> = <span class="hljs-string">&quot;myscript.js&quot;</span>;<br>link.<span class="hljs-property">rel</span> = <span class="hljs-string">&quot;preload&quot;</span>;<br>link.<span class="hljs-property">as</span> = <span class="hljs-string">&quot;script&quot;</span>;<br><span class="hljs-variable language_">document</span>.<span class="hljs-property">head</span>.<span class="hljs-title function_">appendChild</span>(link);<br><br><span class="hljs-comment">// 立即执行脚本</span><br><span class="hljs-keyword">let</span> script = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&quot;script&quot;</span>);<br>script.<span class="hljs-property">src</span> = <span class="hljs-string">&quot;myscript.js&quot;</span>;<br><span class="hljs-variable language_">document</span>.<span class="hljs-property">body</span>.<span class="hljs-title function_">appendChild</span>(script);<br></code></pre></td></tr></table></figure>
+
+
+</li>
+<li><p><strong>基于标记语言的异步加载</strong></p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">link</span></span><br><span class="hljs-tag">  <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;preload&quot;</span></span><br><span class="hljs-tag">  <span class="hljs-attr">as</span>=<span class="hljs-string">&quot;script&quot;</span></span><br><span class="hljs-tag">  <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;async_script.js&quot;</span></span><br><span class="hljs-tag">  <span class="hljs-attr">onload</span>=<span class="hljs-string">&quot;let script = document.createElement(&#x27;script&#x27;); script.src = this.href; document.body.appendChild(script);&quot;</span></span><br><span class="hljs-tag">/&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>  这一段话首先创建一个链接，然后设置脚本路径，再加载完成之后把脚本添加到页面中，这样异步操作可以保证</p>
+</li>
+</ul>
+<h2 id="💡Render"><a href="#💡Render" class="headerlink" title="💡Render"></a>💡Render</h2><p>如果你的资源影响了你的 <a target="_blank" rel="noopener" href="https://web.dev/articles/user-centric-performance-metrics#first_paint_and_first_contentful_paint">First Paint</a> ,lighthouse会给出一个警告：</p>
+<p><img src="https://raw.githubusercontent.com/JerryC66/picgo-repo/main/img/17390a45499da7d6~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><p><strong>内联关键 JavaScript 和 CSS</strong></p>
+<ul>
+<li>将关键的 JavaScript 和 CSS 直接嵌入到 HTML 页面中，可以减少由于请求这些资源而引起的延迟。这可以通过将 JavaScript 使用 <strong><code>async</code> 属性异步加载</strong>，以及将<strong>关键 CSS 内联到页面头部</strong>来实现。</li>
+<li>然而，内联代码会增加 HTML 文件的大小，并且不易维护，因为所有的代码都在一个文件中。此外，内联的资源也无法被浏览器单独缓存，因为它们与页面内容混合在一起。</li>
+</ul>
+</li>
+<li><p><strong>服务器端渲染（Server-Side Rendering，SSR）</strong></p>
+<ul>
+<li>在服务器端生成页面的 HTML，然后将其发送给客户端。这样，在客户端加载 JavaScript 和执行脚本之前，用户就可以立即看到页面内容。</li>
+<li>这可以改善页面的首次渲染时间，因为它减少了用户等待的时间。然而，SSR 可能会增加 HTML 文件的大小，导致页面下载时间延长。另外，它也会增加服务器端的负载和复杂性。</li>
+</ul>
+</li>
+</ul>
+<h2 id="💡Pre-cache"><a href="#💡Pre-cache" class="headerlink" title="💡Pre-cache"></a>💡Pre-cache</h2><p><img src="https://web.dev/static/articles/apply-instant-loading-with-prpl/image/requestsresponses-servi-9af9ccb5be804.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><p><strong>Service Worker</strong></p>
+<ul>
+<li>服务工作线程充当浏览器和网络之间的<strong>代理</strong>，它可以<strong>拦截网络请求</strong>，并且可以<strong>将资源直接从缓存中获取</strong>，而不必每次都从服务器请求资源。</li>
+<li>这样可以提高页面加载速度，尤其是在用户重复访问应用程序时。</li>
+</ul>
+</li>
+<li><p><strong>pre-cache</strong></p>
+<ul>
+<li>通过在服务工作线程中实现<strong>预缓存逻辑</strong>，可以将应用程序所需的核心资源提前缓存到本地。这样，在用户首次访问应用程序时，这些资源就已经存在于本地缓存中，可以直接从缓存中获取，而无需等待服务器响应。</li>
+<li>这不仅提高了页面加载速度，还使得用户可以在离线状态下访问应用程序。</li>
+</ul>
+</li>
+<li><p><strong>使用第三方库简化生成Service Worker</strong></p>
+<ul>
+<li>为了简化服务工作线程的创建和管理，可以使用第三方库，例如Workbox。</li>
+</ul>
+</li>
+</ul>
+<h2 id="💡Lazy-load"><a href="#💡Lazy-load" class="headerlink" title="💡Lazy load"></a>💡Lazy load</h2><p>如果你的网站加载太多资源，lighthouse会提示你：</p>
+<p><img src="https://raw.githubusercontent.com/JerryC66/picgo-repo/main/img/17390b6e260cfd91~tplv-t2oaga2asx-jj-mark:3024:0:0:0:q75.awebp" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><p>为了首次加载更小的JavaScript，其中只包含可以尝试<strong>拆分bundle</strong>，对于剩下的资源按需要<strong>懒加载块</strong>。</p>
+</li>
+<li><p>如果你成功的拆分了bundle，给重要的chunk加上preload，浏览器会提高下载的优先级。</p>
+</li>
+</ul>
+<h2 id="⭐Conclusion"><a href="#⭐Conclusion" class="headerlink" title="⭐Conclusion"></a>⭐Conclusion</h2><p>PRPL 模式的关键思想是尽可能快地加载应用程序的关键部分，并在后续页面使用中继续提供良好的性能</p>
+<ol>
+<li><strong>Preload（预加载）</strong>：在页面加载期间，<strong>服务器可以向客户端推送关键资源</strong>，例如 HTML、CSS、JavaScript 等。这些资源可以通过 HTTP&#x2F;2 的服务器推送功能或其他技术来实现。</li>
+<li><strong>Render（渲染）</strong>：在加载阶段，应用程序应该尽可能快地开始渲染页面内容，以使用户尽快看到有用的信息。这意味着应用程序应该<strong>优先加载和渲染视觉上的关键内容</strong>，而不是等待所有资源都加载完毕后再进行渲染。</li>
+<li><strong>Pre-cache（预缓存）</strong>：在首次访问应用程序时，可以<strong>通过Service Worker将关键资源预先缓存到客户端</strong>，以便后续页面使用时可以直接从缓存中获取。</li>
+<li><strong>Lazy-load（延迟加载）</strong>：延迟加载是指在后续页面使用时<strong>动态加载额外的资源</strong>，而不是在页面初始加载阶段加载所有资源。</li>
+</ol>
+<h2 id="📕Reference"><a href="#📕Reference" class="headerlink" title="📕Reference"></a>📕Reference</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.patterns.dev/vanilla/prpl">PRPL pattern</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.wallarm.com/what/what-is-http-2-and-how-is-it-different-from-http-1">HTTP&#x2F;1 vs. HTTP&#x2F;2</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wenxuehai/p/14236426.html">性能评测工具 lighthouse</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://web.dev/articles/apply-instant-loading-with-prpl">Apply instant loading with the PRPL pattern</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904122529873933">前端预加载资源preload</a></p>
+</li>
+</ul>
+<h6 id=""><a href="#" class="headerlink" title=""></a></h6>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%89%8D%E7%AB%AF/" class="category-chain-item">前端</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%AC%94%E8%AE%B0/" class="print-no-link">#笔记</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/03/28/Linux%E8%BF%9B%E7%A8%8B%E6%8E%A7%E5%88%B6/" title="Linux进程控制">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Linux进程控制</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/03/19/js%E4%BB%A3%E7%90%86/" title="js代理">
+                        <span class="hidden-mobile">js代理</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"b7QF8DOJ3LwBHcove2JrX53N-gzGzoHsz","appKey":"I0gLTGyRnzTDjejPdPuhWozv","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/DynamicRibbon.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/runtime.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/snowflake.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/love.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

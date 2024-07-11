@@ -16,22 +16,26 @@
   <meta name="author" content="Rey">
   <meta name="keywords" content="">
   
-    <meta name="description" content="一个简单的todoList一个简单的todoList  表单 列表渲染  表单输入绑定表单输入绑定 123456789101112131415161718&lt;script setup&gt;import &#123; ref &#125; from &#x27;vue&#x27;const checkedNames &#x3D; ref([])&lt;&#x2F;script&gt;&lt;template&amp;gt">
+    <meta name="description" content="👨‍🎨2024 NUS_SOC  Graphics Rendering  (self-learning with games101😙)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一些很nice的Vue官方示例">
-<meta property="og:url" content="http://jerrycc.cn/2024/02/16/%E4%B8%80%E4%BA%9B%E5%BE%88nice%E7%9A%84Vue%E5%AE%98%E6%96%B9%E7%A4%BA%E4%BE%8B/index.html">
+<meta property="og:title" content="Shading着色 | 图形学 | OpenGL">
+<meta property="og:url" content="http://jerrycc.cn/2024/07/09/Shading/index.html">
 <meta property="og:site_name" content="Rey&#39;s blog">
-<meta property="og:description" content="一个简单的todoList一个简单的todoList  表单 列表渲染  表单输入绑定表单输入绑定 123456789101112131415161718&lt;script setup&gt;import &#123; ref &#125; from &#x27;vue&#x27;const checkedNames &#x3D; ref([])&lt;&#x2F;script&gt;&lt;template&amp;gt">
+<meta property="og:description" content="👨‍🎨2024 NUS_SOC  Graphics Rendering  (self-learning with games101😙)">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-02-16T12:48:24.000Z">
-<meta property="article:modified_time" content="2024-02-19T06:36:05.209Z">
+<meta property="og:image" content="http://jerrycc.cn/img/shading.jpg">
+<meta property="article:published_time" content="2024-07-09T06:51:54.000Z">
+<meta property="article:modified_time" content="2024-07-11T14:11:17.732Z">
 <meta property="article:author" content="Rey">
 <meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://jerrycc.cn/img/shading.jpg">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
   
-  <title>一些很nice的Vue官方示例 - Rey&#39;s blog</title>
+  
+  <title>Shading着色 | 图形学 | OpenGL - Rey&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -69,7 +73,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"jerrycc.cn","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"WONRXzPmzl9U9JyH8uvdQPar-MdYXbMMI","app_key":"lxrHzWM0YiioqzU1aYTXLFok","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"jerrycc.cn","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"WONRXzPmzl9U9JyH8uvdQPar-MdYXbMMI","app_key":"lxrHzWM0YiioqzU1aYTXLFok","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -79,35 +83,6 @@
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
   
-
-  
-
-  
-    <!-- Google tag (gtag.js) -->
-    <script async>
-      if (!Fluid.ctx.dnt) {
-        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
-          window.dataLayer = window.dataLayer || [];
-          function gtag() {
-            dataLayer.push(arguments);
-          }
-          gtag('js', new Date());
-          gtag('config', '');
-        });
-      }
-    </script>
-  
-
-  
-
-  
-
-  
-
-  
-    
-  
-
 
 
   
@@ -226,7 +201,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="一些很nice的Vue官方示例"></span>
+            <span id="subtitle" data-typed-text="Shading着色 | 图形学 | OpenGL"></span>
           
         </div>
 
@@ -237,8 +212,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-02-16 20:48" pubdate>
-          2024年2月16日 晚上
+        <time datetime="2024-07-09 14:51" pubdate>
+          2024年7月9日 下午
         </time>
       </span>
     
@@ -249,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          262 字
+          311 字
         
       </span>
     
@@ -305,28 +280,75 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">一些很nice的Vue官方示例</h1>
+            <h1 id="seo-header">Shading着色 | 图形学 | OpenGL</h1>
             
             
               <div class="markdown-body">
                 
-                <h3 id="一个简单的todoList"><a href="#一个简单的todoList" class="headerlink" title="一个简单的todoList"></a>一个简单的todoList</h3><p><a target="_blank" rel="noopener" href="https://play.vuejs.org/#eNp9VF1v2jAU/StWNCmg0kRd94TSqt3GpE5aV3W8NXtI4wu4OHbkD2BC/Pdd2zFJO9YXcO65H+f43ut9ctu22cZCMk0KXSvWGqLB2Pa6FKxppTJkTxQsyIEslGxIiq7pEZpLKu8MNB2W5dHgMqIbIaWopdCGCNg6bA47Q65cwlGajiNoENGd+clF7d0PIYxOycUknA0zHKYk/SqJWQGhTK9A+xIH7zEI+fgmZF6tgUiLdTDQqEqvTsddvon7Ibc+hFdbESJK8RtJl4KDU7QzXi5F5p+cdWFFbZgUpKL0PugdjUMBrzDbVNxC1lq9Gg3K9onOzl4zGFxaiPUkkAH5F0ISKZJEikUe+ogdxA9sRssrA+7LFAupGrI5l2Kq7XPDTNYq2IAwV2XSky4TdHY0Cl49AycYhDhWPHcyEL2llFReU5F7l+jPRGtNOBMs00gKPIRGsmUSYUZfJY1mJFvDSnIKrugsW2bkGwD1jairY3weSz5bY6RwlIq8OzukyJ3UcLRHfq7UOcMr6TkGcSOHTAgTFHZj/AsN61lN1/AH3Zw1Y3Rg952KiP/owRsFjdxEVGe65ayGkS8yIRfj6Hld5EdiHXlPGc2xeckkGa7WiWWlsGACHpRs9egp9UxSN6zBPsNeO3tg5IH/jonrO+tubL8Ps0gOOFiD+yY3NWpZo7QPgKlHMTFqun70xzfd8BlfCzIat3/BltmLlgIV+ZUok1o2LeOgfrZul7AH07ijOKOcy+13bzPKQrctGLOCen3C/qJ3zlYmDwo0qA0254iZSi0B58nBs1/3fjaPIE6uda18B3wELbl1HIPbZyso0h74ebZ3/qVkYjnXs50BoaMoR7R/hsoE2/rlHek93cvssnuMDsnhL5Af4b8=">一个简单的todoList</a></p>
-<ul>
-<li>表单</li>
-<li>列表渲染</li>
+                <h1 id=""><a href="#" class="headerlink" title=""></a></h1><h2 id="👨‍🎨2024-NUS-SOC-Graphics-Rendering-self-learning-with-games101😙"><a href="#👨‍🎨2024-NUS-SOC-Graphics-Rendering-self-learning-with-games101😙" class="headerlink" title="👨‍🎨2024 NUS_SOC  Graphics Rendering  (self-learning with games101😙)"></a>👨‍🎨2024 NUS_SOC  Graphics Rendering  (self-learning with games101😙)</h2><span id="more"></span>
+
+
+
+<h2 id="不同Shading"><a href="#不同Shading" class="headerlink" title="不同Shading"></a>不同Shading</h2><ul>
+<li>应用在平面上 —— <strong>Flat Shading</strong></li>
+<li>应用在顶点上 —— <strong>Gouraud Shading</strong></li>
+<li>应用在像素上 —— <strong>Phong Shading</strong></li>
+<li>半角向量代替反射向量 —— <strong>Blinn-Phong Shading</strong></li>
 </ul>
-<h3 id="表单输入绑定"><a href="#表单输入绑定" class="headerlink" title="表单输入绑定"></a>表单输入绑定</h3><p><a target="_blank" rel="noopener" href="https://cn.vuejs.org/guide/essentials/forms.html">表单输入绑定</a></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-keyword">import</span> &#123; ref &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span></span><br><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-keyword">const</span> checkedNames = <span class="hljs-title function_">ref</span>([])</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Checked names: &#123;&#123; checkedNames &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;jack&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;Jack&quot;</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;checkedNames&quot;</span> /&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;jack&quot;</span>&gt;</span>Jack<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br> <br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;john&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;John&quot;</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;checkedNames&quot;</span> /&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;john&quot;</span>&gt;</span>John<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br> <br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;mike&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;Mike&quot;</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;checkedNames&quot;</span> /&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;mike&quot;</span>&gt;</span>Mike<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
-
-
-<h3 id="博客渲染"><a href="#博客渲染" class="headerlink" title="博客渲染"></a>博客渲染</h3><p><a target="_blank" rel="noopener" href="https://play.vuejs.org/#eNp9U01vm0AQ/SujVSU7qg113RPCVprKlVqprdVU7SH04MBgrw27aHdx7CL+e2cXMERKzImZ92bmzcdW7GNReMcSWcBCHSteGNBoymIZCZ4XUhmoQGEKNaRK5jAi6ugC3WVyu5batJjndw6bkWgAkYilIEJBTg0Lm2r8YIEKeBLAbAKGmwwDGH07w16WSuAZnrjZwW/KAPWk577vubbMlovtK8x5z/yzO1scuAYtIS0FMSPx9yYSQ2WfpTD3/B+2AmcEh34zDZoDGQbzItsYtJYJE36EQJtzhouIVZC20cHzXG9hhLktxygK6Au76TQmwHGaSkUpbBhw0QwpYh0cHPDcoh5PBn7XXIc4owdvUWQbtcWpwZNpOb2kBbzzZh15GV725RSGPjVGf6F/aZdN2HClLxxJgikXuFay0OOHkRMzsuNt/KucG+sfinLwq+MlGXa8cbbRmuQ/UvWp7aGf4u7DsqqaBUNdhz7ZLfJYGiMF3MYZjw8U/Aap/Ph58RtKtGocYB2h30RdmYDRdCkp33p7LQWNoHKHzWKZFzxD9aMwnC4pYgE4xGKbLJNPX53PqBLdbbqYHcaHF/x7fbK+iK0ValRHWugFM1Yr9W/h1f130jwAc5mUdv1XwJ+oZVZajQ3trhQJyR7wnNov7knTo/qlVyeDQndNWaGW2bywiNEdfLrSei937s1dXCRqVv8H8l92BQ==">blog渲染</a></p>
+<h2 id="重心坐标"><a href="#重心坐标" class="headerlink" title="重心坐标"></a>重心坐标</h2><blockquote>
+<p><strong>三角形内部插值</strong></p>
 <ul>
-<li>组件基础</li>
-<li>事件监听</li>
+<li>为了根据三角形顶点平滑过渡</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;script setup&gt;<br>import &#123; ref &#125; from &#x27;vue&#x27;<br>import BlogPost from &#x27;./BlogPost.vue&#x27;<br>  <br>const posts = ref([<br>  &#123; id: 1, title: &#x27;My journey with Vue&#x27; &#125;,<br>  &#123; id: 2, title: &#x27;Blogging with Vue&#x27; &#125;,<br>  &#123; id: 3, title: &#x27;Why Vue is so fun&#x27; &#125;<br>])<br><br>const postFontSize = ref(1)<br>&lt;/script&gt;<br><br>&lt;template&gt;<br>	&lt;div :style=&quot;&#123; fontSize: postFontSize + &#x27;em&#x27; &#125;&quot;&gt;<br>    &lt;BlogPost<br>      v-for=&quot;post in posts&quot;<br>      :key=&quot;post.id&quot;<br>      :title=&quot;post.title&quot;<br>      @enlarge-text=&quot;postFontSize += 0.1&quot;<br>    &gt;&lt;/BlogPost&gt;<br>  &lt;/div&gt;<br>&lt;/template&gt;<br></code></pre></td></tr></table></figure>
-
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/JerryC66/picgo-repo/main/img/image-20240711215957663.png" srcset="/img/loading.gif" lazyload alt="image-20240711215957663"></p>
+<blockquote>
+<p> 在三维空间做插值，再投影到二维</p>
+</blockquote>
+<h2 id="纹理放大"><a href="#纹理放大" class="headerlink" title="纹理放大"></a>纹理放大</h2><p><strong>Texture Magnification</strong></p>
+<blockquote>
+<p><strong>纹理过小</strong></p>
+</blockquote>
+<ul>
+<li>A pixel on a texture —— a <strong>texel</strong> (纹理元素)</li>
+</ul>
+<blockquote>
+<p>在一个很高分辨率的屏幕上铺很低分辨率的texture，相当于一些接近的pixel映射到同样的texel，于是会出现放大模糊的感觉</p>
+</blockquote>
+<h3 id="双重线性插值"><a href="#双重线性插值" class="headerlink" title="双重线性插值"></a>双重线性插值</h3><p><strong>考虑周围的texel，平滑过渡的颜色</strong></p>
+<p><img src="https://raw.githubusercontent.com/JerryC66/picgo-repo/main/img/image-20240711220052287.png" srcset="/img/loading.gif" lazyload alt="image-20240711220052287"></p>
+<h2 id="纹理走样"><a href="#纹理走样" class="headerlink" title="纹理走样"></a>纹理走样</h2><blockquote>
+<p><strong>纹理过大</strong></p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/JerryC66/picgo-repo/main/img/image-20240711220113036.png" srcset="/img/loading.gif" lazyload alt="image-20240711220113036"></p>
+<ul>
+<li>屏幕的一个pixel覆盖的纹理过大</li>
+<li>信号变化过快，采样速度跟不上</li>
+<li>所以不采样，先设计好mipmap</li>
+</ul>
+<h3 id="Mipmap"><a href="#Mipmap" class="headerlink" title="Mipmap"></a>Mipmap</h3><p><strong>范围查询 range queries</strong></p>
+<ul>
+<li><p>提前计算，提前生成</p>
+</li>
+<li><p>只能做近似的正方形的范围查询</p>
+</li>
+<li><p>根据等比数列计算，存储量只比原本多了三分之一</p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/JerryC66/picgo-repo/main/img/image-20240711220154655.png" srcset="/img/loading.gif" lazyload alt="image-20240711220154655"></p>
+<blockquote>
+<p>把屏幕上的一个pixel近似成一个正方形</p>
+</blockquote>
+<p>如何查询？</p>
+<blockquote>
+<p>根据映射的texture大小尺寸查询mipmap，求出在第几个level</p>
+</blockquote>
+<h4 id="三线性插值"><a href="#三线性插值" class="headerlink" title="三线性插值"></a>三线性插值</h4><p><img src="https://raw.githubusercontent.com/JerryC66/picgo-repo/main/img/image-20240711220225392.png" srcset="/img/loading.gif" lazyload alt="image-20240711220225392"></p>
+<h4 id="各向异性过滤"><a href="#各向异性过滤" class="headerlink" title="各向异性过滤"></a>各向异性过滤</h4><ul>
+<li>考虑不同的方向性</li>
+<li>不只是方形</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/JerryC66/picgo-repo/main/img/image-20240711220237856.png" srcset="/img/loading.gif" lazyload alt="image-20240711220237856"></p>
 
                 
               </div>
@@ -345,12 +367,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%89%8D%E7%AB%AF/" class="category-chain-item">前端</a>
+  <a href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" class="category-chain-item">图形学</a>
   
   
     <span>></span>
     
-  <a href="/categories/%E5%89%8D%E7%AB%AF/Vue/" class="category-chain-item">Vue</a>
+  <a href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/OpenGL/" class="category-chain-item">OpenGL</a>
   
   
 
@@ -381,18 +403,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/02/17/Vue%E4%BE%A6%E5%90%AC%E5%99%A8/" title="Vue侦听器 | watch选项">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Vue侦听器 | watch选项</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/02/16/JWT%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0/" title="JWT详解笔记">
-                        <span class="hidden-mobile">JWT详解笔记</span>
+                      <a href="/2024/05/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" title="华科操作系统 | OS实验&amp;课设 | Ubuntu">
+                        <span class="hidden-mobile">华科操作系统 | OS实验&amp;课设 | Ubuntu</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -536,21 +552,20 @@
 
   
     
-      <span id="leancloud-site-pv-container" style="display: none">
+      <span id="busuanzi_container_site_pv" style="display: none">
         总访问量 
-        <span id="leancloud-site-pv"></span>
+        <span id="busuanzi_value_site_pv"></span>
          次
       </span>
     
     
-      <span id="leancloud-site-uv-container" style="display: none">
+      <span id="busuanzi_container_site_uv" style="display: none">
         总访客数 
-        <span id="leancloud-site-uv"></span>
+        <span id="busuanzi_value_site_uv"></span>
          人
       </span>
     
     
-
   
 </div>
 
@@ -699,9 +714,11 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
+  <script  src="/js/local-search.js" ></script>
+
   <script defer src="/js/leancloud.js" ></script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 

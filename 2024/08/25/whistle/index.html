@@ -16,24 +16,24 @@
   <meta name="author" content="Rey">
   <meta name="keywords" content="">
   
-    <meta name="description" content="👨‍🎨2024 NUS_SOC  Graphics Rendering  (self-learning with games101😙)">
+    <meta name="description" content="Whistle 代理小记录 Whistle 代理小记录 📣">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Shading着色 | 图形学 | OpenGL">
-<meta property="og:url" content="http://jerrycc.cn/2024/07/09/Shading/index.html">
+<meta property="og:title" content="Whistle">
+<meta property="og:url" content="http://jerrycc.cn/2024/08/25/whistle/index.html">
 <meta property="og:site_name" content="Rey&#39;s blog">
-<meta property="og:description" content="👨‍🎨2024 NUS_SOC  Graphics Rendering  (self-learning with games101😙)">
+<meta property="og:description" content="Whistle 代理小记录 Whistle 代理小记录 📣">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://jerrycc.cn/img/shading.jpg">
-<meta property="article:published_time" content="2024-07-09T06:51:54.000Z">
-<meta property="article:modified_time" content="2024-07-11T15:45:42.745Z">
+<meta property="og:image" content="http://jerrycc.cn/img/whistle.png">
+<meta property="article:published_time" content="2024-08-25T13:32:18.000Z">
+<meta property="article:modified_time" content="2024-11-03T16:51:05.728Z">
 <meta property="article:author" content="Rey">
 <meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://jerrycc.cn/img/shading.jpg">
+<meta name="twitter:image" content="http://jerrycc.cn/img/whistle.png">
   
   
   
-  <title>Shading着色 | 图形学 | OpenGL - Rey&#39;s blog</title>
+  <title>Whistle - Rey&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -228,7 +228,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Shading着色 | 图形学 | OpenGL"></span>
+            <span id="subtitle" data-typed-text="Whistle"></span>
           
         </div>
 
@@ -239,8 +239,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-07-09 14:51" pubdate>
-          2024年7月9日 下午
+        <time datetime="2024-08-25 21:32" pubdate>
+          2024年8月25日 晚上
         </time>
       </span>
     
@@ -251,7 +251,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          311 字
+          482 字
         
       </span>
     
@@ -262,7 +262,7 @@
         
         
         
-          3 分钟
+          5 分钟
         
       </span>
     
@@ -307,75 +307,72 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Shading着色 | 图形学 | OpenGL</h1>
+            <h1 id="seo-header">Whistle</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id=""><a href="#" class="headerlink" title=""></a></h1><h2 id="👨‍🎨2024-NUS-SOC-Graphics-Rendering-self-learning-with-games101😙"><a href="#👨‍🎨2024-NUS-SOC-Graphics-Rendering-self-learning-with-games101😙" class="headerlink" title="👨‍🎨2024 NUS_SOC  Graphics Rendering  (self-learning with games101😙)"></a>👨‍🎨2024 NUS_SOC  Graphics Rendering  (self-learning with games101😙)</h2><span id="more"></span>
+                <p>Whistle 代理小记录</p>
+<p>Whistle 代理小记录 📣</p>
+<span id="more"></span>
 
-
-
-<h2 id="不同Shading"><a href="#不同Shading" class="headerlink" title="不同Shading"></a>不同Shading</h2><ul>
-<li>应用在平面上 —— <strong>Flat Shading</strong></li>
-<li>应用在顶点上 —— <strong>Gouraud Shading</strong></li>
-<li>应用在像素上 —— <strong>Phong Shading</strong></li>
-<li>半角向量代替反射向量 —— <strong>Blinn-Phong Shading</strong></li>
-</ul>
-<h2 id="重心坐标"><a href="#重心坐标" class="headerlink" title="重心坐标"></a>重心坐标</h2><blockquote>
-<p><strong>三角形内部插值</strong></p>
-<ul>
-<li>为了根据三角形顶点平滑过渡</li>
-</ul>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/JerryC66/picgo-repo/main/img/image-20240711215957663.png" srcset="/img/loading.gif" lazyload></p>
-<blockquote>
-<p> 在三维空间做插值，再投影到二维</p>
-</blockquote>
-<h2 id="纹理放大"><a href="#纹理放大" class="headerlink" title="纹理放大"></a>纹理放大</h2><p><strong>Texture Magnification</strong></p>
-<blockquote>
-<p><strong>纹理过小</strong></p>
-</blockquote>
-<ul>
-<li>A pixel on a texture —— a <strong>texel</strong> (纹理元素)</li>
-</ul>
-<blockquote>
-<p>在一个很高分辨率的屏幕上铺很低分辨率的texture，相当于一些接近的pixel映射到同样的texel，于是会出现放大模糊的感觉</p>
-</blockquote>
-<h3 id="双重线性插值"><a href="#双重线性插值" class="headerlink" title="双重线性插值"></a>双重线性插值</h3><p><strong>考虑周围的texel，平滑过渡的颜色</strong></p>
-<p><img src="https://raw.githubusercontent.com/JerryC66/picgo-repo/main/img/image-20240711220052287.png" srcset="/img/loading.gif" lazyload></p>
-<h2 id="纹理走样"><a href="#纹理走样" class="headerlink" title="纹理走样"></a>纹理走样</h2><blockquote>
-<p><strong>纹理过大</strong></p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/JerryC66/picgo-repo/main/img/image-20240711220113036.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>屏幕的一个pixel覆盖的纹理过大</li>
-<li>信号变化过快，采样速度跟不上</li>
-<li>所以不采样，先设计好mipmap</li>
-</ul>
-<h3 id="Mipmap"><a href="#Mipmap" class="headerlink" title="Mipmap"></a>Mipmap</h3><p><strong>范围查询 range queries</strong></p>
-<ul>
-<li><p>提前计算，提前生成</p>
+<h2 id="关于代理"><a href="#关于代理" class="headerlink" title="关于代理"></a>关于代理</h2><h3 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h3><ul>
+<li><p><strong>抓包</strong>：包，是指网络数据包，包括客户端发送的请求和服务端返回的数据。PC 端，可以通过 chrome 直观的看到网络状态，但是 App 抓包则需要专门的抓包工具了。</p>
 </li>
-<li><p>只能做近似的正方形的范围查询</p>
-</li>
-<li><p>根据等比数列计算，存储量只比原本多了三分之一</p>
+<li><p><strong>代理</strong>：是指一个中间角色，它可以在本地调试时不需要经过鉴权或者其他限制的情况下，直接代理 url 请求，可以代理请求，也可以代理响应</p>
 </li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/JerryC66/picgo-repo/main/img/image-20240711220154655.png" srcset="/img/loading.gif" lazyload></p>
-<blockquote>
-<p>把屏幕上的一个pixel近似成一个正方形</p>
+<h3 id="HTTP代理"><a href="#HTTP代理" class="headerlink" title="HTTP代理"></a>HTTP代理</h3><blockquote>
+<p>客户端到服务端的中转服务</p>
 </blockquote>
-<p>如何查询？</p>
-<blockquote>
-<p>根据映射的texture大小尺寸查询mipmap，求出在第几个level</p>
-</blockquote>
-<h4 id="三线性插值"><a href="#三线性插值" class="headerlink" title="三线性插值"></a>三线性插值</h4><p><img src="https://raw.githubusercontent.com/JerryC66/picgo-repo/main/img/image-20240711220225392.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="各向异性过滤"><a href="#各向异性过滤" class="headerlink" title="各向异性过滤"></a>各向异性过滤</h4><ul>
-<li>考虑不同的方向性</li>
-<li>不只是方形</li>
+<p><img src="https://raw.githubusercontent.com/JerryC66/picgo-repo/main/img/728b192bf71ceecba4e5898c545b459c93416.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ul>
+<li><p>不经过代理的请求：客户端和服务端直接建立连接后，即可开始交换数据。</p>
+</li>
+<li><p>经过代理的请求：客户端不与服务端直接建立连接，而是<strong>客户端先跟代理建立连接后，将目标服务器的地址发送给代理，通过代理再跟服务端建立连接</strong>，这里如果代理服务为 HTTP Server，则称为 HTTP 代理。</p>
+</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/JerryC66/picgo-repo/main/img/image-20240711220237856.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="whistle使用"><a href="#whistle使用" class="headerlink" title="whistle使用"></a>whistle使用</h2><h3 id="安装启动"><a href="#安装启动" class="headerlink" title="安装启动"></a>安装启动</h3><ul>
+<li><p><strong>安装node</strong></p>
+</li>
+<li><p><strong>安装whistle</strong></p>
+  <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">pnpm <span class="hljs-keyword">install</span> -g whistle<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>启动whistle</strong></p>
+  <figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">w2 <span class="hljs-literal">start</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>配置代理</strong></p>
+<p>  我用的浏览器插件<a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/padekgcemlokbadohgkifijomclgjgif">SwitchyOmega</a></p>
+<p>  <img src="https://raw.githubusercontent.com/JerryC66/picgo-repo/main/img/switchyomega.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+</li>
+<li><p><strong>访问配置页面</strong></p>
+<ul>
+<li>方式1：域名访问 <a target="_blank" rel="noopener" href="http://local.whistlejs.com/">http://local.whistlejs.com/</a></li>
+<li>方式2：通过ip+端口来访问，形式如  e.g. <a target="_blank" rel="noopener" href="http://127.0.0.1:8899/">http://127.0.0.1:8899</a></li>
+<li>方式2：通过命令行参数 <code>-P xxxx</code> 自定义webui的端口(<code>xxxx</code>表示要设置的端口号)，自定义端口支持上述两种方式访问，也支持 <a href="http://127.0.0.1:xxxx/">http://127.0.0.1:xxxx</a></li>
+</ul>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/JerryC66/picgo-repo/main/img/image-20240825235716213.png" srcset="/img/loading.gif" lazyload alt="image-20240825235716213"></p>
+<h3 id="高级使用"><a href="#高级使用" class="headerlink" title="高级使用"></a>高级使用</h3><ul>
+<li><p><strong>请求转发1</strong></p>
+<p>  把后端接口替换成本地文件，模拟数据（不用等待后端接口开发）</p>
+  <figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">http:<span class="hljs-string">//example.com</span> file:<span class="hljs-string">//</span>****<span class="hljs-string">.json</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>请求转发2</strong></p>
+<p>  把线上出错文件替换成本地文件debug</p>
+</li>
+<li><p><strong>请求转发3</strong></p>
+<p>  把url替换成另一个线上网址</p>
+</li>
+<li><p><strong>注入html, css, js</strong></p>
+<p>  也是替换成本地文件</p>
+<p>  还可以注入源码</p>
+  <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">www<span class="hljs-selector-class">.baidu</span><span class="hljs-selector-class">.com</span> jsPrepend:<span class="hljs-comment">//&#123;vConsole.min.js&#125;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>使用log功能打印日志</strong></p>
+  <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">www<span class="hljs-selector-class">.baidu</span><span class="hljs-selector-class">.com</span> log:<span class="hljs-comment">//</span><br></code></pre></td></tr></table></figure></li>
+</ul>
 
                 
               </div>
@@ -394,15 +391,8 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/" class="category-chain-item">图形学</a>
+  <a href="/categories/%E5%B7%A5%E5%85%B7/" class="category-chain-item">工具</a>
   
-  
-    <span>></span>
-    
-  <a href="/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/OpenGL/" class="category-chain-item">OpenGL</a>
-  
-  
-
   
 
       </span>
@@ -430,9 +420,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/08/25/whistle/" title="Whistle">
+                      <a href="/2024/10/13/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BA%95%E5%B1%82%E6%A2%B3%E7%90%86/" title="浏览器底层梳理">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Whistle</span>
+                        <span class="hidden-mobile">浏览器底层梳理</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -440,8 +430,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/05/31/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" title="华科操作系统 | OS实验&amp;课设 | Ubuntu">
-                        <span class="hidden-mobile">华科操作系统 | OS实验&amp;课设 | Ubuntu</span>
+                      <a href="/2024/07/09/Shading/" title="Shading着色 | 图形学 | OpenGL">
+                        <span class="hidden-mobile">Shading着色 | 图形学 | OpenGL</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

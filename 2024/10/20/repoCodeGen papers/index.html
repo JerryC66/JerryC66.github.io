@@ -1,0 +1,875 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.JPG">
+  <link rel="icon" href="/img/icon.JPG">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#3f4a6e">
+  <meta name="author" content="Rey">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="repoCodeGen&gt;&gt;&gt;  Code Generation at Repository-Level 💻">
+<meta property="og:type" content="article">
+<meta property="og:title" content="repoCodeGen🤖">
+<meta property="og:url" content="http://jerrycc.cn/2024/10/20/repoCodeGen%20papers/index.html">
+<meta property="og:site_name" content="Rey&#39;s blog">
+<meta property="og:description" content="repoCodeGen&gt;&gt;&gt;  Code Generation at Repository-Level 💻">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://jerrycc.cn/img/repoCodeGen.png">
+<meta property="article:published_time" content="2024-10-20T02:26:48.000Z">
+<meta property="article:modified_time" content="2024-11-04T02:43:11.646Z">
+<meta property="article:author" content="Rey">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://jerrycc.cn/img/repoCodeGen.png">
+  
+  
+  
+  <title>repoCodeGen🤖 - Rey&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"jerrycc.cn","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"k4MoKUoxJSHvqT6e3JwRqB5i-gzGzoHsz","app_key":"Osktw6Tpa3b2OsHj3mgpbdWP","server_url":"https://k4mokuox.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.1.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Rey</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/background.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="repoCodeGen🤖"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-10-20 10:26" pubdate>
+          2024年10月20日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          18 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> times
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">repoCodeGen🤖</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="repoCodeGen"><a href="#repoCodeGen" class="headerlink" title="repoCodeGen"></a>repoCodeGen</h1><h3 id="Code-Generation-at-Repository-Level-💻"><a href="#Code-Generation-at-Repository-Level-💻" class="headerlink" title="&gt;&gt;&gt;  Code Generation at Repository-Level 💻"></a>&gt;&gt;&gt;  Code Generation at Repository-Level 💻</h3><span id="more"></span>
+
+<h3 id="Repository-Level-Prompt-Generation-for-Large-Language-Models-of-Code"><a href="#Repository-Level-Prompt-Generation-for-Large-Language-Models-of-Code" class="headerlink" title="Repository-Level Prompt Generation for Large Language Models of Code"></a>Repository-Level Prompt Generation for Large Language Models of Code</h3><h4 id="RLPG"><a href="#RLPG" class="headerlink" title="RLPG"></a>RLPG</h4><blockquote>
+<p> 核心理念是，用代码库中其他部分<strong>替换</strong>默认上下文的一部分。选取什么代码以及从哪里选取是由<strong>提示提案</strong>管理的</p>
+</blockquote>
+<ul>
+<li><strong>提示源</strong>：从何处获取提示提案的上下文代码<ul>
+<li>有十种不同的提示源（父类、导入、兄弟类、相似名称、子类、导入父类、导入兄弟类、导入类似名称、导入子类）</li>
+</ul>
+</li>
+<li><strong>提示上下文类型</strong>：决定从提示源获取何种代码<ul>
+<li>有七种不同的提示上下文类型（所有行、类型标识符、字段声明、字符串字面量、方法名称、方法名和主体）</li>
+</ul>
+</li>
+</ul>
+<h4 id="Prompt-Proposal-Classifier-PPC"><a href="#Prompt-Proposal-Classifier-PPC" class="headerlink" title="Prompt Proposal Classifier (PPC)"></a>Prompt Proposal Classifier (PPC)</h4><blockquote>
+<p>PPC 的目标是预测出能够成功生成目标代码片段的<strong>最佳提示提案</strong>（prompt proposal）</p>
+</blockquote>
+<ul>
+<li><strong>训练过程</strong>：如果某个提示提案能够成功生成目标代码片段，则对应的向量位置为1，否则为 0，通过二元交叉熵损失优化模型参数、</li>
+<li><strong>模型变体</strong>：<ul>
+<li><strong>RLPG-H</strong>：使用预训练模型的表示来预测最有可能成功的提示提案。</li>
+<li><strong>RLPG-R</strong>：使用多头注意力机制来评估洞窗口与提示提案上下文的相似性，从而选择最佳提示。</li>
+</ul>
+</li>
+</ul>
+<h4 id="Prompt-Composer"><a href="#Prompt-Composer" class="headerlink" title="Prompt Composer"></a>Prompt Composer</h4><blockquote>
+<p>作用是组合 最佳提示提案 和 codex 默认上下文 (空白位置之前的代码)</p>
+</blockquote>
+<ul>
+<li><strong>上下文分配</strong>：</li>
+<li><strong>上下文组合</strong></li>
+<li><strong>截断策略</strong></li>
+</ul>
+<h3 id="RepoCoder-–-Repository-Level-Code-Completion-Through-Iterative-Retrieval-and-Generation"><a href="#RepoCoder-–-Repository-Level-Code-Completion-Through-Iterative-Retrieval-and-Generation" class="headerlink" title="RepoCoder – Repository-Level Code Completion Through Iterative Retrieval and Generation"></a>RepoCoder – Repository-Level Code Completion Through Iterative Retrieval and Generation</h3><h4 id="RepoCoder-框架"><a href="#RepoCoder-框架" class="headerlink" title="RepoCoder 框架"></a>RepoCoder 框架</h4><p>一个针对仓库级代码完成任务的新型迭代检索生成框架</p>
+<p><strong>原始 RAG</strong></p>
+<ul>
+<li>使用检索模型 R，使用未完成的代码 X 作为检索查询，从代码片段 C 中提取最相关的信息 **$C &#x3D; R (C, X)$**，再利用语言模型 M 补全代码 <strong>$Y &#x3D; M (C, X)$</strong></li>
+</ul>
+<p><strong>优化后的 RepoCoder</strong></p>
+<ul>
+<li>检索查询不只是未完成的代码 X，还包括**上一次迭代生成的预测代码 $Y^{i-1}$**，即$Y^i &#x3D;M (C, X, Y^{i-1})$</li>
+</ul>
+<h4 id="代码检索"><a href="#代码检索" class="headerlink" title="代码检索"></a>代码检索</h4><ul>
+<li>滑动窗口，每次提取 $S_w$ 行代码，每次滑动固定行数 $S_s$ (滑动大小)</li>
+<li>初始检索过程使用未完成代码最后几行作为查询</li>
+<li>后续迭代都引入上一次迭代生成的代码 $Y^{i-1}$ 作为查询，原代码片段提取 $(S_w-S_s)$ 行，从$Y^{i-1}$ 中提取 $S_s$ 行</li>
+</ul>
+<h4 id="代码生成"><a href="#代码生成" class="headerlink" title="代码生成"></a>代码生成</h4><ul>
+<li>仓库中检索最相关的代码 $C_{ret}$，并于待补充的代码 $X$ 进行拼接</li>
+<li>有一个提示模板，将 $C_{ret}$ 和 $X$ 无缝拼接</li>
+<li>检索到的代码按照相似度排序，用于提示的代码片段有最大数量 $K$</li>
+</ul>
+<h4 id="基准构建"><a href="#基准构建" class="headerlink" title="基准构建"></a>基准构建</h4><p>一种新的 <strong>RepoEval 基准</strong>，使用从 Github 获取的最新高质量仓库，评估涵盖代码完成度的<strong>三个层次</strong>：</p>
+<ul>
+<li><strong>行</strong></li>
+<li><strong>API 调用</strong></li>
+<li><strong>函数体完成</strong></li>
+</ul>
+<h4 id="深入分析"><a href="#深入分析" class="headerlink" title="深入分析"></a>深入分析</h4><blockquote>
+<p>这些分析不仅帮助理解了RepoCoder的工作原理，也为未来的研究方向提供了指导</p>
+</blockquote>
+<p><strong>代码质量</strong></p>
+<ul>
+<li>包含与目标补全相似的代码语句或展示目标API调用示例的代码片段通常最有用</li>
+</ul>
+<p><strong>检索代码位置</strong></p>
+<ul>
+<li>“相似导入”、“相似名称”或“当前目录”位置的文件提取代码效果良好</li>
+</ul>
+<h3 id="Guiding-Language-Models-of-Code-with-Global-Context-using-Monitors"><a href="#Guiding-Language-Models-of-Code-with-Global-Context-using-Monitors" class="headerlink" title="Guiding Language Models of Code with Global Context using Monitors"></a>Guiding Language Models of Code with Global Context using Monitors</h3><h4 id="LMs-常出现的错误："><a href="#LMs-常出现的错误：" class="headerlink" title="LMs 常出现的错误："></a><strong>LMs 常出现的错误：</strong></h4><p>如果需要引用在训练过程中<strong>未见过的类型或API</strong>，会出现错误</p>
+<p>缺乏对上下文的理解，无法正确处理<strong>跨文件或跨模块</strong>的代码依赖</p>
+<ul>
+<li><code>symbol not found</code>	没有相关信息，LMs 会出现臆想和幻觉</li>
+<li><code>complile-time-errors</code>    编译时错误，例如使用错误数量的参数时“实际和形式参数列表长度不符”</li>
+<li><code>runtime errors</code>    运行时错误，例如违反 API 协议</li>
+</ul>
+<h4 id="语言服务器协议-LSP"><a href="#语言服务器协议-LSP" class="headerlink" title="语言服务器协议 LSP"></a><strong>语言服务器协议 LSP</strong></h4><ul>
+<li><p>LSP 旨在提供特定于语言的智能，并通过支持进程间通信的协议与开发工具进行通信，这样单个 LSP 可以在多个开发工具中使用</p>
+</li>
+<li><p>LSP 相当于在中间层做一个抽象，让语言的「静态分析服务」和「编辑器 &#x2F; IDE」分离开来</p>
+</li>
+<li><p>本文就是专注通过 LSP 以<strong>语言无关</strong>的方式提供的类型导向代码完成分析</p>
+</li>
+</ul>
+<h4 id="监视引导解码"><a href="#监视引导解码" class="headerlink" title="监视引导解码"></a>监视引导解码</h4><ul>
+<li>集成开发环境 IDEs 主要是在开发的<strong>不完整代码上应用静态分析</strong>，使用增量解析和语义分析算法对部分代码进行解析</li>
+<li><strong>部分抽象语法树</strong>：带有特殊节点（表示代码不完整部分）的不完整抽象语法树</li>
+<li><strong>监视器（Monitor）</strong>：LMs 和静态分析之间的接口，观察 LM 生成的代码并在预定义的触发点查询静态分析。<ul>
+<li>触发条件</li>
+<li>状态更新函数</li>
+<li>掩码生成函数</li>
+<li>静态分析</li>
+</ul>
+</li>
+<li><strong>解码过程</strong>：一般解码过程是根据 LM 生成的 logits 概率分布进行 token 采样，如果 monitor 处于非等待状态，静态分析生成的掩码会调整 logits 从而影响采样</li>
+<li><strong>掩码生成</strong>：识别与当前静态分析建议一致的 token。当一个 token 被采样，监视器会更新状态和建议</li>
+</ul>
+<h4 id="总体性研究"><a href="#总体性研究" class="headerlink" title="总体性研究"></a>总体性研究</h4><ul>
+<li>MGD 中的监控器可以围绕 LSP 的特定语言实例化，不需要更改静态分析接口，支持新语言很容易</li>
+<li>MGD 会在特定情况下触发，这里就需要判定<strong>触发静态分析的情况</strong>，如下情况可以予以考虑：<ul>
+<li><strong>变量和符号</strong><ul>
+<li>跟踪局部和全局变量的定义和使用</li>
+<li>识别变量的作用域和生命周期</li>
+</ul>
+</li>
+<li><strong>函数和方法</strong><ul>
+<li>分析函数签名，包括参数列表和返回类型（文中就提到了基于堆栈的监视器，指导生成正确数量的参数）</li>
+<li>检查函数调用的正确性和参数匹配</li>
+</ul>
+</li>
+<li><strong>类和对象</strong><ul>
+<li>分析类的结构，包括属性、方法和继承关系</li>
+<li>检查对象的实例化</li>
+</ul>
+</li>
+<li><strong>模块和导入</strong><ul>
+<li>追踪导入的模块和符号</li>
+<li>分析模块依赖关系</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="RepoFusion-Training-Code-Models-to-Understand-Your-Repository"><a href="#RepoFusion-Training-Code-Models-to-Understand-Your-Repository" class="headerlink" title="RepoFusion-Training Code Models to Understand Your Repository"></a>RepoFusion-Training Code Models to Understand Your Repository</h3><h4 id="Fusion-in-Decoder"><a href="#Fusion-in-Decoder" class="headerlink" title="Fusion-in-Decoder"></a>Fusion-in-Decoder</h4><ul>
+<li>将周围上下文附加到仓库上下文，分别编码并组合以生成目标空缺的预测</li>
+</ul>
+<h4 id="Repository-Contexts"><a href="#Repository-Contexts" class="headerlink" title="Repository Contexts"></a>Repository Contexts</h4><blockquote>
+<p>该部分和第一篇论文 Repository-Level Prompt Generation for Large Language Models of Code 思想大致相同</p>
+</blockquote>
+<ul>
+<li><strong>提示提案上下文 (PPC)</strong><ul>
+<li>提示提案上下文是通过提取来自特定类别的相关源文件的特定类型的上下文创建</li>
+<li>它是由一个提示提案函数生成的</li>
+<li>提示上下文类型的示例包括目标孔后面的行、方法名称和主体、标识符、字符串文字等</li>
+<li>包括 prior PPC 和 post PPC</li>
+</ul>
+</li>
+<li><strong>提示源</strong><ul>
+<li>提示源的示例包括当前文件、导入到当前文件的文件、与当前文件同名的文件等</li>
+</ul>
+</li>
+</ul>
+<h4 id="RepoFusion"><a href="#RepoFusion" class="headerlink" title="RepoFusion"></a>RepoFusion</h4><blockquote>
+<p>核心理念是训练一个代码模型，使其能够识别仓库中的上下文，帮助目标空缺的代码生成</p>
+</blockquote>
+<ul>
+<li>从提示提案 (PPC) 生成 仓库上下文 (PC)，然后某种顺序拼接</li>
+<li>有四种策略 T-Rank、T-Rand、NT-Rank、NT-Prior-Last</li>
+</ul>
+<h3 id="REPOEXEC-Evaluate-Code-Generation-with-a-Repository-Level-Executable-Benchmark"><a href="#REPOEXEC-Evaluate-Code-Generation-with-a-Repository-Level-Executable-Benchmark" class="headerlink" title="REPOEXEC-Evaluate Code Generation with a Repository-Level Executable Benchmark"></a>REPOEXEC-Evaluate Code Generation with a Repository-Level Executable Benchmark</h3><p><strong>关于LMs 代码生成能力的评估</strong></p>
+<p>​	作者提出了一个评估代码生成模型能力的方法，主要侧重于<strong>生成可执行和功能正确的代码的能力</strong>，这也是评估方法的两个难点，也是推动开发更强大可靠的代码生成模型的灵感来源。</p>
+<p>​	可执行的代码，即能够在实际环境中运行的代码，评估可执行性需要评估代码生成模型是否能识别和映射代码中的依赖项，并且确保依赖项被正确整合到生成的代码中。</p>
+<p>​	正确性，就是代码按照预期功能正确执行。这需要高覆盖率的测试用例来测试代码的正确性，检查其是否通过测试用例，衡量其是否可以完成各种预定任务。</p>
+<p>​	这虽然是评估生成代码模型能力的方法需要考虑的因素，其实也给代码生成模型的后续优化提供了思路。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/AI/" class="category-chain-item">AI</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/AI/UIDP/" class="category-chain-item">UIDP</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/AI/UIDP/repoCodeGen/" class="category-chain-item">repoCodeGen</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%AC%94%E8%AE%B0/" class="print-no-link">#笔记</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/11/04/%E6%81%8B%E7%88%B1%E6%8C%87%E5%8D%97%E4%B9%8BINFP/" title="🫨INFP恋爱指南 —— 小H同学">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">🫨INFP恋爱指南 —— 小H同学</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/10/20/UIDP%20papers/" title="UIDP🔍">
+                        <span class="hidden-mobile">UIDP🔍</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"b7QF8DOJ3LwBHcove2JrX53N-gzGzoHsz","appKey":"I0gLTGyRnzTDjejPdPuhWozv","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/DynamicRibbon.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/runtime.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/snowflake.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/love.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

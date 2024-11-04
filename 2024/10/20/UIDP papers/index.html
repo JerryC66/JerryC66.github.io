@@ -1,0 +1,1104 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.JPG">
+  <link rel="icon" href="/img/icon.JPG">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#3f4a6e">
+  <meta name="author" content="Rey">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="UIDP&gt;&gt;&gt; Dark Patterns of UI 📱">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UIDP🔍">
+<meta property="og:url" content="http://jerrycc.cn/2024/10/20/UIDP%20papers/index.html">
+<meta property="og:site_name" content="Rey&#39;s blog">
+<meta property="og:description" content="UIDP&gt;&gt;&gt; Dark Patterns of UI 📱">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://jerrycc.cn/img/UIDP.png">
+<meta property="article:published_time" content="2024-10-20T02:26:22.000Z">
+<meta property="article:modified_time" content="2024-11-04T02:43:18.268Z">
+<meta property="article:author" content="Rey">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://jerrycc.cn/img/UIDP.png">
+  
+  
+  
+  <title>UIDP🔍 - Rey&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"jerrycc.cn","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"k4MoKUoxJSHvqT6e3JwRqB5i-gzGzoHsz","app_key":"Osktw6Tpa3b2OsHj3mgpbdWP","server_url":"https://k4mokuox.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.1.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Rey</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/background.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="UIDP🔍"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-10-20 10:26" pubdate>
+          2024年10月20日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          39 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> times
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">UIDP🔍</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="UIDP"><a href="#UIDP" class="headerlink" title="UIDP"></a>UIDP</h1><h3 id="Dark-Patterns-of-UI-📱"><a href="#Dark-Patterns-of-UI-📱" class="headerlink" title="&gt;&gt;&gt; Dark Patterns of UI 📱"></a>&gt;&gt;&gt; Dark Patterns of UI 📱</h3><span id="more"></span>
+
+<h2 id="The-Dark-Patterns-Side-of-UXDesign"><a href="#The-Dark-Patterns-Side-of-UXDesign" class="headerlink" title="The Dark (Patterns) Side of UXDesign."></a>The Dark (Patterns) Side of UXDesign.</h2><blockquote>
+<p>这一篇应该是暗模式领域的奠基之作，第一作者是后续文章会多次引用到的提出五种策略的 Gray，他提出五种主要的暗模式，提出了许多亟待思考的问题</p>
+</blockquote>
+<h3 id="论文贡献"><a href="#论文贡献" class="headerlink" title="论文贡献"></a>论文贡献</h3><ul>
+<li>描述并分析了暗模式的实例，为学术界定义这一个由日常生活实践者界定的现象</li>
+<li>进一步研究了用户体验中可能存在的道德问题，比如操纵、欺骗等不正常现象</li>
+<li>识别暗模式的含义和用户体验实践者的道德责任之间的关系</li>
+</ul>
+<h3 id="设计用户体验中的伦理学"><a href="#设计用户体验中的伦理学" class="headerlink" title="设计用户体验中的伦理学"></a>设计用户体验中的伦理学</h3><p>设计师在设计用户体验时，应该更多地考虑到伦理道德的问题，并且要找到一些实际可行的方法，把这些伦理道德的考虑融入到设计中去。这样，我们在使用各种应用和服务的时候，就能有更好的体验，不会被那些不太诚实的设计所困扰。</p>
+<h3 id="我们的实验方法"><a href="#我们的实验方法" class="headerlink" title="我们的实验方法"></a>我们的实验方法</h3><p><strong>语料库生成</strong></p>
+<ul>
+<li>之前已有 Brignull 收集的众多例子，构成基础语料库并且提供基本的分类方法</li>
+<li>本实验的研究人员还迭代地扩大了互联网搜索的关键词集，找到更多未标记的暗模式可能存在的案例</li>
+</ul>
+<p><strong>分析</strong></p>
+<ul>
+<li>使用 Brignull 分类法有一些策略和动机的重叠，并且有的类别不直接平行</li>
+<li>需要对语料库的所有示例进行第二次分析，采用开放式编码方法，以 <strong>Brignull 分类法</strong>为基准，同时强调互动质量、上下文、目标用户群体等方面，把重点转向了<strong>设计师的策略和潜在设计动机</strong></li>
+</ul>
+<h3 id="五种主要的暗模式"><a href="#五种主要的暗模式" class="headerlink" title="五种主要的暗模式"></a><img src="/../img/UIDP.png" srcset="/img/loading.gif" lazyload>五种主要的暗模式</h3><p><strong>NAGGING</strong></p>
+<ul>
+<li>正常交互过程的反复干扰</li>
+<li>遮挡界面的弹出窗口、分散用户注意力的音频通知等</li>
+</ul>
+<p><strong>OBSTRUCTION</strong></p>
+<ul>
+<li>阻碍用户完成特定的任务</li>
+<li>不付费无法使用特定功能、阻碍用户关闭广告通知</li>
+</ul>
+<p><strong>SNEAKING</strong></p>
+<ul>
+<li>隐藏一些对用户有害的行为</li>
+<li>声明中隐藏有侵犯隐私的条款、购物车添加用户未选择的商品</li>
+</ul>
+<p><strong>INTERFACE INTERFERENCE</strong></p>
+<ul>
+<li>特定界面设计干扰用户的重要操作</li>
+<li>隐藏信息（将相关信息隐藏成无关信息）、预选（用户交互之前选项默认被选择）、美学操作（转移用户注意力而忽视功能）</li>
+</ul>
+<p><strong>FORCED ACTION</strong></p>
+<ul>
+<li>用户为了访问特定功能被要求执行特定动作</li>
+<li>windows 强制更新、</li>
+</ul>
+<h3 id="更多思考"><a href="#更多思考" class="headerlink" title="更多思考"></a>更多思考</h3><ul>
+<li>虽然有些暗模式初衷并非黑暗，但给用户带来的实际效果的确是黑暗的</li>
+<li>使用者可能并不能正确识别暗模式，一些正常设计会因为自身疏忽被贬低为暗模式</li>
+<li>“暗”的边界不好界定，因为设计师和用户之间的视角权衡会存在差异</li>
+<li>需要提供用户反馈，让实践者参与设计过程中，用体验说话</li>
+<li>潜在发展方向：<ul>
+<li>用户体验实践者需要有更统一的决策界限</li>
+<li>人机交互领域需要更多考虑实践者的需要、限制和愿望</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>这个领域应该是一个交叉领域，需要有社会学伦理学等人文领域的技术加持，需要研究者同时具有人机交互知识和道德伦理思想</p>
+<p>对于这种涉及社科方面的领域，我认为需要更多的社会调研、用户反馈，更广泛的暗模式案例</p>
+<p>个人感觉这个领域没有什么明确的暗模式划分和明显的技术突破，就是需要逐步完善，逐步调整，在大基数用户中获得一个比较能接受的利益和道德的折衷评价，把学术社区和用户体验实践者更好地联系起来</p>
+</blockquote>
+<h2 id="Ul-Dark-Patterns-and-Where-to-Find-Them-A-Study-on-Mobile-Applicationsand-User-Perception"><a href="#Ul-Dark-Patterns-and-Where-to-Find-Them-A-Study-on-Mobile-Applicationsand-User-Perception" class="headerlink" title="Ul Dark Patterns and Where to Find Them-A Study on Mobile Applicationsand User Perception."></a>Ul Dark Patterns and Where to Find Them-A Study on Mobile Applicationsand User Perception.</h2><blockquote>
+<p>本文结合以前的暗模式分类工作，进一步结合了用户的感知能力进行实验</p>
+</blockquote>
+<h3 id="实验方法"><a href="#实验方法" class="headerlink" title="实验方法"></a>实验方法</h3><ul>
+<li><p><strong>分析了流行应用中的黑暗模式</strong>：研究者们检查了240个在Google Play商店中流行的移动应用，看看这些应用中有多少使用了故意误导用户的黑暗模式。</p>
+</li>
+<li><p><strong>进行了用户感知实验</strong>：一个在线实验，邀请了589个用户来看应用的操作视频，然后询问他们是否能识别出视频中的黑暗模式，帮助研究者们了解了用户对这些黑暗模式的感知能力。</p>
+</li>
+<li><p><strong>提供了数据集</strong>：一个公开的数据集，里面包含了他们分析的每个应用和黑暗模式的分类信息</p>
+</li>
+</ul>
+<h3 id="未来方向"><a href="#未来方向" class="headerlink" title="未来方向"></a>未来方向</h3><ol>
+<li><strong>提高用户意识</strong>：可以通过教育和宣传活动，提高用户对黑暗模式的认识，让他们在使用应用时更加警觉。</li>
+<li><strong>开发识别工具</strong>：可以开发自动化的工具，帮助用户识别出应用中的黑暗模式，或者在应用商店中筛选出那些使用黑暗模式的应用。</li>
+<li><strong>进一步研究黑暗模式的影响</strong>：可以更深入地研究不同类型的黑暗模式对用户行为的影响，以及它们可能带来的长期后果。</li>
+<li><strong>进一步细化暗模式分类法：</strong>五种分类并不一定完善，可以考虑更多因素，比如地域和文化背景</li>
+<li><strong>改进设计伦理教育</strong>：在设计和计算机科学教育中加入更多关于伦理设计的内容，帮助未来的设计师避免使用黑暗模式。</li>
+<li><strong>继续研究用户感知</strong>：可以进一步研究用户对黑暗模式的感知能力，了解在不同情况下用户如何识别和应对这些模式。</li>
+<li><strong>扩展研究范围</strong>：可以将研究扩展到其他类型的应用或平台，比如付费应用、网站或其他类型的数字服务。</li>
+</ol>
+<h2 id="AidUl-Toward-Automated-Recognition-of-Dark-Patterns-in-User-Interfaces"><a href="#AidUl-Toward-Automated-Recognition-of-Dark-Patterns-in-User-Interfaces" class="headerlink" title="AidUl- Toward Automated Recognition of Dark Patterns in User Interfaces."></a>AidUl- Toward Automated Recognition of Dark Patterns in User Interfaces.</h2><blockquote>
+<p>本文在此前研究成果基础上（暗模式分类、用户意识），开发了一个自动化识别工具，自动化检测用户界面的暗模式</p>
+</blockquote>
+<h3 id="AidUI"><a href="#AidUI" class="headerlink" title="AidUI"></a>AidUI</h3><h4 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h4><ul>
+<li>论文提出了<strong>AidUI</strong>，这是一个<strong>自动化方法</strong>，它结合了计算机视觉和自然语言处理技术来识别应用程序截图中的视觉和文本线索</li>
+<li><strong>核心思想</strong>是：存在一些<strong>视觉和文本线索</strong>，当它们共同出现时，表明存在各种暗模式，通过检测这些单独的线索并分析它们的出现，可以克服暗模式的变体给检测带来的挑战</li>
+</ul>
+<h4 id="四个阶段"><a href="#四个阶段" class="headerlink" title="四个阶段"></a>四个阶段</h4><ul>
+<li><p><strong>视觉线索检测</strong>：使用深度学习的对象检测模型如 Faster R-CNN 识别UI中的图标</p>
+<ul>
+<li>图标检测：使用 RICO 数据集，包含大量 Android 设计资源</li>
+<li>映射图标到 DPs：使用预定义的规则将检测的图标映射到 DPs</li>
+</ul>
+</li>
+<li><p><strong>UI及文本内容检测</strong>：提取包含文本和非文本内容的UI段</p>
+<ul>
+<li>对于<strong>文本</strong>检测和提取，使用EAST文本检测模型</li>
+<li>对于<strong>图形</strong> UI，使用无监督边缘检测算法和 CNN</li>
+</ul>
+</li>
+<li><p><strong>DP分析</strong>：应用文本、颜色和空间分析技术来分析提取的UI段，以预测潜在的暗模式</p>
+<ul>
+<li>对于<strong>文本分析</strong>，使用定义的启发式模式匹配规则</li>
+<li>对于<strong>颜色分析</strong>，使用颜色直方图技术</li>
+<li>对于<strong>空间分析</strong>，分析邻域距离、大小、坐标等因素</li>
+</ul>
+</li>
+<li><p><strong>DP解析</strong>：结合视觉线索检测和DP分析阶段的结果，预测给定UI中的底层暗模式，并使用边界框进行定位</p>
+<ul>
+<li><strong>段级别决议</strong>：在邻接段落之间使用投票机制，考虑文本、颜色、空间等因素</li>
+<li><strong>UI级别决议</strong>：考虑段级别决议和视觉线索检测的结果，做出最终预测</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>仅仅基于 UI 屏幕截图的像素数据运行，适用于不同的软件领域</p>
+</blockquote>
+<h2 id="Unveiling-the-Tricks-Automated-Detection-of-Dark-Patterns-in-Mobile-Applications"><a href="#Unveiling-the-Tricks-Automated-Detection-of-Dark-Patterns-in-Mobile-Applications" class="headerlink" title="Unveiling the Tricks- Automated Detection of Dark Patterns in Mobile Applications"></a>Unveiling the Tricks- Automated Detection of Dark Patterns in Mobile Applications</h2><blockquote>
+<p>本文也开发了一个自动检测移动应用暗模式的知识驱动系统，不需要为每个应用手动创建规则，能覆盖更多类型的暗模式</p>
+</blockquote>
+<h3 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h3><ul>
+<li>论文讨论了移动应用中“暗模式”（Dark Patterns）的问题，即通过恶意设计（例如通过预设选项或隐藏信息）来诱骗用户做出违背最佳利益决定的界面元素。</li>
+<li>作者提出了一个名为UIGuard的知识驱动系统，该系统使用计算机视觉和自然语言处理技术来自动检测移动应用中的暗模式。</li>
+<li>UIGuard系统不需要为每个新的应用手动创建规则，能够覆盖更多类型的暗模式，并具有更好的性能。</li>
+</ul>
+<h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><h4 id="已有工作的局限性"><a href="#已有工作的局限性" class="headerlink" title="已有工作的局限性"></a>已有工作的局限性</h4><ul>
+<li>已有的暗模式的策略和类型的识别<strong>存在异质性</strong>和<strong>缺乏一致性</strong></li>
+<li>研究人员的解决暗模式的方案存在局限性<ul>
+<li>众包技术（crowd-sourcing）<ul>
+<li>耗时难以泛化，或者仅限于某些模式</li>
+<li>开发者需要重新打包程序，可能难以扩展</li>
+</ul>
+</li>
+<li>基于文本的分类技术（text-based）<ul>
+<li>需要大量标注数据集来训练模型</li>
+<li>由于仅仅依赖文本很可能产生错误</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="论文工作的先进性"><a href="#论文工作的先进性" class="headerlink" title="论文工作的先进性"></a>论文工作的先进性</h4><ul>
+<li>工作步骤<ul>
+<li>分析并合并了移动平台上现有的暗模式分类，形成一致分类</li>
+<li>对统一的分类进行特征分析，识别关键属性</li>
+</ul>
+</li>
+<li>UIGuard 的组成<ul>
+<li>属性提取器</li>
+<li>知识驱动的暗模式检查器</li>
+</ul>
+</li>
+</ul>
+<h4 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h4><ul>
+<li><strong>暗模式分类</strong><ul>
+<li>2010 Harry Brignull <ul>
+<li>暗模式网站</li>
+</ul>
+</li>
+<li>Gray <ul>
+<li>五种策略：<strong>nagging, obstruction, sneaking, interface interference and forced action</strong></li>
+</ul>
+</li>
+<li>Mathur <ul>
+<li>实证研究购物网站</li>
+<li>五种暗模式特征，六种认知偏差</li>
+</ul>
+</li>
+<li>Di Geronimo<ul>
+<li>16种类型和31个案例</li>
+</ul>
+</li>
+<li>Gunawan<ul>
+<li>研究使用过程的不同阶段</li>
+</ul>
+</li>
+<li><strong>我们</strong><ul>
+<li>研究现有的分类体系，整合成单一且统一的系统</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>暗模式检测</strong><ul>
+<li><strong>手动探索</strong><ul>
+<li>耗时，需要用户具有暗模式知识</li>
+<li>无法捕捉新应用程序的变化</li>
+</ul>
+</li>
+<li><strong>基于半自动聚类的方法</strong><ul>
+<li>模拟用户行为在购物网站识别暗模式</li>
+<li>采用聚类技术将相关UI模式分组</li>
+<li>手动评估聚类</li>
+<li>仍然耗时且难以应用新的UI</li>
+</ul>
+</li>
+<li><strong>基于文本的简单分类方法</strong><ul>
+<li>基于朴素贝叶斯的分类器</li>
+<li>梯度增强树分类器</li>
+<li>基于文本容易出现错误</li>
+</ul>
+</li>
+<li><strong>我们</strong><ul>
+<li>可扩展性：可以用于分析大量应用中的暗模式</li>
+<li>监控新发布的用户界面，移动应用发生变化仍然有效</li>
+<li>轻松集成新的规则和属性识别模块</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>UI理解</strong><ul>
+<li>首次实现对移动UI中的暗模式进行自动化检测</li>
+</ul>
+</li>
+</ul>
+<h3 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h3><h4 id="Gray-的五种策略"><a href="#Gray-的五种策略" class="headerlink" title="Gray 的五种策略"></a>Gray 的五种策略</h4><ul>
+<li><strong>Nagging</strong><ul>
+<li>重复的中断应用程序操作</li>
+<li>比如弹出不相关的广告或评级</li>
+</ul>
+</li>
+<li><strong>Obstruction</strong><ul>
+<li>让一些事情变得困难来满足公司的利益</li>
+<li>Three Types<ul>
+<li><em>Roach Motel</em>: 容易进，难得出</li>
+<li><em>Price Comparison Prevention：在其他平台无法比较</em></li>
+<li><em>Intermediate</em> <em>Currency</em>：阻止用户通过虚拟货币获得真实货币</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Sneaking</strong><ul>
+<li>隐藏、欺骗或者延迟和用户有关的信息</li>
+<li>Four Types<ul>
+<li><em>Forced Continuity：</em>购买到期时强迫用户继续购买</li>
+<li><em>Hidden Costs：</em>延迟告知高税收或者运送费等信息</li>
+<li><em>Sneak into Basket：未经用户许可添加一些附加项目</em></li>
+<li><em>Bait and</em> <em>Switch**：给出错误的预期来误导用户</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Interface Inference</strong><ul>
+<li>某些选项置于上方来隐藏信息迷惑用户</li>
+<li>Four Types<ul>
+<li><em>Hidden Information</em>：降低与用户有关信息的可见性</li>
+<li><em>Preselection：默认选择不利的选项</em></li>
+<li><em>Aesthetic Manipulation：</em>利用视觉效果分散用户注意力</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Forced Action</strong><ul>
+<li>强迫用户执行一些操作</li>
+</ul>
+</li>
+</ul>
+<h3 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h3><h4 id="屏幕级别的视角"><a href="#屏幕级别的视角" class="headerlink" title="屏幕级别的视角"></a>屏幕级别的视角</h4><ul>
+<li><strong>静态暗模式</strong><ul>
+<li>仅针对单一用户界面，不依赖于用户的上下文或交互历史</li>
+<li>如坐标、类型、颜色、文本内容和图标语义</li>
+</ul>
+</li>
+<li><strong>动态暗模式</strong><ul>
+<li>依赖于上下文，需要超出当前用户界面的额外信息来识别</li>
+<li>包括之前的UI，触发当前页面或动画效果的元素，以及用户的意图</li>
+</ul>
+</li>
+</ul>
+<h4 id="元素级视角"><a href="#元素级视角" class="headerlink" title="元素级视角"></a>元素级视角</h4><ul>
+<li>识别单一元素的暗色图案<ul>
+<li>单独评估每个元素的属性，如其坐标、包含的文本、颜色、图标语义和元素类型</li>
+</ul>
+</li>
+<li>多元素暗模式<ul>
+<li>分析多个元素的属性</li>
+<li>分析用户界面元素之间的关系</li>
+</ul>
+</li>
+</ul>
+<h4 id="特性识别"><a href="#特性识别" class="headerlink" title="特性识别"></a>特性识别</h4><ul>
+<li>关键特征<ul>
+<li>元素元信息<ul>
+<li>坐标、元素类型</li>
+<li>帮助识别元素的形状和关系</li>
+</ul>
+</li>
+<li>元素的文本内容<ul>
+<li>确定模式的语义</li>
+</ul>
+</li>
+<li>某些类型元素的状态<ul>
+<li>复选框、图标</li>
+<li>识别UI页面的整体含义</li>
+</ul>
+</li>
+<li>背景和文本颜色<ul>
+<li>与视觉模式有关</li>
+</ul>
+</li>
+<li>更高级别的信息<ul>
+<li>相似元素的分组、元素之间的关系</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h3><h4 id="UI元素属性提取"><a href="#UI元素属性提取" class="headerlink" title="UI元素属性提取"></a>UI元素属性提取</h4><ul>
+<li><strong>UI元素检测</strong><ul>
+<li>使用 Faster-RCNN 来定位和识别UI元素</li>
+</ul>
+</li>
+<li><strong>文本内容提取</strong><ul>
+<li>使用 PaddleOCR 从UI中提取文本</li>
+<li>结果合并，匹配UI元素和文本内容</li>
+</ul>
+</li>
+<li><strong>图标语义</strong><ul>
+<li>使用 Res-18 模型将图标分类为更精细的语义类别</li>
+</ul>
+</li>
+<li><strong>元素状态识别</strong></li>
+<li><strong>颜色提取</strong><ul>
+<li>影响视觉突出性，操纵用户感知</li>
+</ul>
+</li>
+<li><strong>UI元素分组</strong><ul>
+<li>使用基于密度的空间聚类算法 DBSCAN</li>
+<li>比较相关UI元素的视觉显著性</li>
+</ul>
+</li>
+</ul>
+<h4 id="知识驱动的暗模式检查器"><a href="#知识驱动的暗模式检查器" class="headerlink" title="知识驱动的暗模式检查器"></a>知识驱动的暗模式检查器</h4><ul>
+<li>利用常识关联识别</li>
+<li>文本内容、图标含义</li>
+</ul>
+<h3 id="DATASETS-AND-IMPLEMENTATION"><a href="#DATASETS-AND-IMPLEMENTATION" class="headerlink" title="DATASETS AND IMPLEMENTATION"></a><strong>DATASETS AND IMPLEMENTATION</strong></h3><h4 id="深度学习数据集和模型训练"><a href="#深度学习数据集和模型训练" class="headerlink" title="深度学习数据集和模型训练"></a>深度学习数据集和模型训练</h4><ul>
+<li><strong>Rico数据集</strong>：实验的基础数据集，提供了UI的视图层次结构信息，如布局和元素属性</li>
+<li><strong>元素定位数据集</strong>：使用Rico数据集来训练元素定位模型（FasterRCNN），选择了15种Android GUI元素类型作为目标对象，并进行了数据增强以提高模型的鲁棒性</li>
+<li><strong>图标识别数据集</strong>：基于Liu等人的标注，识别了135种图标类型，并进行了数据清洗和增强，以提高图标识别的准确性</li>
+<li><strong>状态识别数据集</strong>：从Rico数据集中提取了特定类型的UI元素（如复选框），并手动标注了它们的状态，用于训练状态识别模型</li>
+</ul>
+<h4 id="暗模式数据集"><a href="#暗模式数据集" class="headerlink" title="暗模式数据集"></a>暗模式数据集</h4><ul>
+<li><strong>数据集构建</strong>：手动标注的一个包含暗模式的UI数据集</li>
+<li><strong>注释过程</strong><ul>
+<li>首先标注UI中存在的暗模式类型</li>
+<li>然后标注这些模式在UI中的具体位置</li>
+</ul>
+</li>
+</ul>
+<h4 id="实验设置"><a href="#实验设置" class="headerlink" title="实验设置"></a>实验设置</h4><ul>
+<li><strong>模型训练</strong>：使用了多种深度学习模型，包括 FasterRCNN 和 ResNet-18，并对这些模型进行了细致的调整和优化，以适应不同的任务需求</li>
+<li><strong>性能评估</strong>：通过精确度、召回率和F1分数等指标来评估模型的性能</li>
+</ul>
+<h4 id="用户研究"><a href="#用户研究" class="headerlink" title="用户研究"></a>用户研究</h4><ul>
+<li>设计了包括不同背景的58名参与者的用户研究</li>
+<li>通过比较用户自身对暗模式的识别和UIGuard的检测结果，来评估工具的有效性。</li>
+</ul>
+<h3 id="Accuracy"><a href="#Accuracy" class="headerlink" title="Accuracy"></a>Accuracy</h3><h4 id="研究问题"><a href="#研究问题" class="headerlink" title="研究问题"></a>研究问题</h4><ul>
+<li><strong>RQ1</strong>: 评估UIGuard系统中每个深度学习（DL）模块的准确性。</li>
+<li><strong>RQ2</strong>: 评估UIGuard系统在检测暗模式方面的整体准确性。</li>
+</ul>
+<h4 id="深度学习模块的准确性"><a href="#深度学习模块的准确性" class="headerlink" title="深度学习模块的准确性"></a>深度学习模块的准确性</h4><ul>
+<li><strong>元素定位和分类</strong>：比较了不同的 baseline，包括UIED、FRCNN（非文本）、FRCNN（非文本）结合 PaddleOCR，以及UIGuard模型。使用了精确度、召回率和F1分数作为评估指标。UIGuard在非文本元素检测、文本元素检测和所有元素检测中均表现出较好的性能。</li>
+<li><strong>图标语义理解</strong>：评估了图标识别模块的准确性，发现UIGuard能够以较高的准确率识别图标。</li>
+<li><strong>状态识别</strong>：评估了UI元素状态识别模块的准确性，同样发现UIGuard在这一任务上达到了高精度。</li>
+</ul>
+<h4 id="检测暗模式的准确性"><a href="#检测暗模式的准确性" class="headerlink" title="检测暗模式的准确性"></a>检测暗模式的准确性</h4><ul>
+<li><strong>整体性能</strong>：UIGuard在检测暗模式方面达到了0.93的准确率，能够正确识别大部分包含暗模式的用户界面。</li>
+<li><strong>详细性能</strong>：对于每种暗模式类型，UIGuard在7种类型中F1分数达到或超过0.80，显示出在检测特定暗模式方面的高效性。</li>
+<li><strong>消融实验</strong>：通过逐步添加UIGuard的不同组件，如图标语义、模板匹配、状态识别和颜色分组，展示了每个组件对系统性能的贡献。</li>
+</ul>
+<h3 id="Usefulness"><a href="#Usefulness" class="headerlink" title="Usefulness"></a>Usefulness</h3><ul>
+<li>研究招募了58名背景多样的参与者，让他们评估UI界面中的暗模式，并与UIGuard的检测结果进行比较。</li>
+<li>结果显示，参与者在使用UIGuard后，对暗模式的识别能力显著提高，表明系统能有效辅助用户识别和避免暗模式。</li>
+<li>此外，研究还表明，参与者知识水平的提高是显著的，UIGuard可以作为教育工具，帮助用户学习如何识别暗模式。</li>
+</ul>
+<h3 id="Discussion-and-future-work"><a href="#Discussion-and-future-work" class="headerlink" title="Discussion and future work"></a>Discussion and future work</h3><h4 id="讨论"><a href="#讨论" class="headerlink" title="讨论"></a>讨论</h4><ol>
+<li><strong>利益相关者受益</strong>：UIGuard工具可以为多种利益相关者提供帮助，包括最终用户、应用开发者和监管机构。</li>
+<li><strong>教育和意识提升</strong>：UIGuard不仅可以检测暗模式，还可以作为教育工具，提高用户对这些不道德设计实践的认识。</li>
+<li><strong>监管支持</strong>：UIGuard可以辅助监管机构监督和执行移动应用市场中的道德实践，帮助他们更有效地检查和评估应用程序。</li>
+</ol>
+<h4 id="未来工作"><a href="#未来工作" class="headerlink" title="未来工作"></a>未来工作</h4><ol>
+<li><strong>暗模式边界</strong>：探讨暗模式与个性化设计的边界，为用户提供可调节的警告级别，以便他们可以选择哪些暗模式对他们更重要。</li>
+<li><strong>设计权衡</strong>：研究如何在保护用户免受暗模式影响的同时，允许一定程度的个性化和定制化设计。</li>
+<li><strong>检测范围扩展</strong>：将UIGuard的应用范围扩展到更多类型的暗模式，特别是那些动态变化的模式。</li>
+<li><strong>工具自动化和进化</strong>：研究如何使UIGuard能够自动适应暗模式分类的变化，以及如何整合用户界面修改工作，以直接阻止恶意设计。</li>
+<li><strong>用户行为影响</strong>：研究UIGuard对用户行为的影响，例如它是否改变了用户使用应用程序的习惯，以及如何平衡直接修改和提示方式。</li>
+<li><strong>法律方面</strong>：进一步明确暗模式的法律含义，为监管机构提供更清晰的指导。</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/AI/" class="category-chain-item">AI</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/AI/UIDP/" class="category-chain-item">UIDP</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%AC%94%E8%AE%B0/" class="print-no-link">#笔记</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/10/20/repoCodeGen%20papers/" title="repoCodeGen🤖">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">repoCodeGen🤖</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/10/13/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BA%95%E5%B1%82%E6%A2%B3%E7%90%86/" title="浏览器底层梳理">
+                        <span class="hidden-mobile">浏览器底层梳理</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"b7QF8DOJ3LwBHcove2JrX53N-gzGzoHsz","appKey":"I0gLTGyRnzTDjejPdPuhWozv","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/DynamicRibbon.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/runtime.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/snowflake.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/love.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
